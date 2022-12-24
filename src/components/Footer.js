@@ -3,7 +3,7 @@ import "../Style/Footer.css"
 import * as Icon from 'react-bootstrap-icons';
 function Footer() {
   return (
-    <>
+    <div>
       <section class=" cta-section mt-5 p-5">
         <div class="container">
           <div class="content">
@@ -71,7 +71,7 @@ function Footer() {
       </div>
 
   </footer>
-    </>
+    </div>
   );
 }
 export default Footer;

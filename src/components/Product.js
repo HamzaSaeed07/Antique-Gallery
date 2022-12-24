@@ -276,6 +276,7 @@ function Product () {
       </section>
 
         </div>
+        
     )
 }
 

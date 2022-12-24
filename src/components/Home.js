@@ -16,14 +16,7 @@ function Home() {
           <div class="bottom-left">Description and Button</div>
         </div>
 
-        <div className="row rola ">
-          <div className="col-6">
-            <img src={Subhero2} />
-          </div>
-          <div className="col-6 ">
-            <img src={Subhero} />
-          </div>
-        </div>
+       
       </section>
 
       <section className="advertisment col-10">
