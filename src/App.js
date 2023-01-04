@@ -14,6 +14,7 @@ import {faFacebook, faGithub, faInstagram, faLinkedin, } from '@fortawesome/free
 
 import Login from './components/Login';
 import Registeration from './components/Registeration';
+import Detail from './components/Detail';
 
 
 library.add( faFacebook, faInstagram, faGithub, faLinkedin)
@@ -21,12 +22,13 @@ function App() {
   return (
     <>
 
-{/* <Home/> */}
+<Home/>
   {/* <Bid/> */}
-{/* <Footer/> */}
+<Footer/>
  {/* <Dashboard/> */}
- <Login/>
+ {/* <Login/> */}
  {/* <Registeration/> */}
+ {/* <Detail/> */}
     </>
 
 
