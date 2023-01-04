@@ -5,163 +5,17 @@ import Subhero from "../images/design.png";
 import Subhero2 from "../images/design.png";
 import advertisment from "../images/Offer-banner.0.jpg";
 import Footer from "./Footer";
+import NavBar from "./NavBar";
+import Product from "./Product";
 
 function Home() {
   return (
-
     <div>
-      <section className="hero ">
-        <div>
-          <img src={Hero} alt="Snow" style={{ width: "100%" }} />
-          <div class="bottom-left">Description and Button</div>
-        </div>
-
-       
-      </section>
-
-      <section className="advertisment col-10">
-        <div className="service col-12 row">
-          <div className="col-3">service 1</div>
-          <div className="col-3">service 2</div>
-          <div className="col-3">service 3</div>
-          <div className="col-3">service 4</div>
-        </div>
-        <div className="think">
-          {/* <img src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fGNvdmVyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60" alt="" /> */}
-        </div>
-      </section>
-      <section className="products col-12 row mt-5">
-      <div>Filter <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">
-  <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
-</svg></div>
-        <div className="product-card col-3">
-          <ul class="cards">
-            <li>
-              <a href="" class="card">
-                <img
-                  src="https://i.imgur.com/oYiTqum.jpg"
-                  class="card__image"
-                  alt=""
-                />
-                <div class="card__overlay">
-                  <div class="card__header">
-                    <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
-                      <path />
-                    </svg>
-                    <img
-                      class="card__thumb"
-                      src="https://i.imgur.com/7D7I6dI.png"
-                      alt=""
-                    />
-                    <div class="card__header-text">
-                      <h3 class="card__title">Jessica Parker</h3>
-                      <span class="card__status">1 hour ago</span>
-                    </div>
-                  </div>
-                  <p class="card__description">Lorem ipsum</p>
-                </div>
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div className="product-card col-3">
-          <ul class="cards">
-            <li>
-              <a href="" class="card">
-                <img
-                  src="https://i.imgur.com/oYiTqum.jpg"
-                  class="card__image"
-                  alt=""
-                />
-                <div class="card__overlay">
-                  <div class="card__header">
-                    <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
-                      <path />
-                    </svg>
-                    <img
-                      class="card__thumb"
-                      src="https://i.imgur.com/7D7I6dI.png"
-                      alt=""
-                    />
-                    <div class="card__header-text">
-                      <h3 class="card__title">Jessica Parker</h3>
-                      <span class="card__status">1 hour ago</span>
-                    </div>
-                  </div>
-                  <p class="card__description">Lorem ipsum</p>
-                </div>
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div className="product-card col-3">
-          <ul class="cards">
-            <li>
-              <a href="" class="card">
-                <img
-                  src="https://i.imgur.com/oYiTqum.jpg"
-                  class="card__image"
-                  alt=""
-                />
-                <div class="card__overlay">
-                  <div class="card__header">
-                    <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
-                      <path />
-                    </svg>
-                    <img
-                      class="card__thumb"
-                      src="https://i.imgur.com/7D7I6dI.png"
-                      alt=""
-                    />
-                    <div class="card__header-text">
-                      <h3 class="card__title">Jessica Parker</h3>
-                      <span class="card__status">1 hour ago</span>
-                    </div>
-                  </div>
-                  <p class="card__description">Lorem ipsum</p>
-                </div>
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div className="product-card col-3">
-          <ul class="cards">
-            <li>
-              <a href="" class="card">
-                <img
-                  src="https://i.imgur.com/oYiTqum.jpg"
-                  class="card__image"
-                  alt=""
-                />
-                <div class="card__overlay">
-                  <div class="card__header">
-                    <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
-                      <path />
-                    </svg>
-                    <img
-                      class="card__thumb"
-                      src="https://i.imgur.com/7D7I6dI.png"
-                      alt=""
-                    />
-                    <div class="card__header-text">
-                      <h3 class="card__title">Jessica Parker</h3>
-                      <span class="card__status">1 hour ago</span>
-                    </div>
-                  </div>
-                  <p class="card__description">Lorem ipsum</p>
-                </div>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-      <section className="recommended ">
-        <div className="sub-ads col-10 row">
-          <div className="sub-ad1 col-12">
-            <img src={advertisment} alt="" />
-          </div>
-        </div>
-      </section>
+      <NavBar />
+      <div>
+        <img src={Hero} alt="Snow" style={{ width: "100%" }} />
+      </div>
+      <Product />
     </div>
   );
 }

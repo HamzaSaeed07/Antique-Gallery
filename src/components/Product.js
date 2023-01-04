@@ -1,27 +1,182 @@
 import React from "react";
-import header from "../images/banner_6_2048x375_crop_top.jpg"
-
+import cart from "../images/Cart-add-icon.png"
+import "../Style/Products.css"
 
 function Product () {
     return(
         <div>
-       
-           <section className="hero mt-5">
-        <div>
-          <img src={header} alt="Snow" style={{ width: "100%" }} />
-          <div class="bottom-left">Description and Button</div>
+      <section className="col-12 row mt-5">
+      <div> <span class="float-right"><h6>Filter <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">
+  <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+</svg></h6></span></div>
+        <div className="col-lg-3 col-md-6 col-12">
+          <ul class="cards">
+            <li>
+              <a href="" class="prod-card">
+                <img
+                  src="https://i.imgur.com/oYiTqum.jpg"
+                  class="card__image"
+                />
+                <div class="card__overlay">
+                  <div class="card__header">
+                    <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
+                      <path />
+                    </svg>
+                    <img
+                      class="card__thumb"
+                      src={cart}
+                      alt="Add"
+                    />
+                    <div class="card__header-text">
+                      <h3 class="card__title">Name:</h3>
+                      <h3 class="card__status">Price</h3>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-8">
+                    <p class="card__description">Description is here</p>
+              
+                    </div>
+                    <div className="col-4">
+                      <span>
+                      View More
+                      </span>
+                    </div>
+                  </div>
+                 
+                </div>
+              </a>
+            </li>
+          </ul>
         </div>
-      </section>
+        <div className="col-lg-3 col-md-6 col-12">
+          <ul class="cards">
+            <li>
+              <a href="" class="prod-card">
+                <img
+                  src="https://i.imgur.com/oYiTqum.jpg"
+                  class="card__image"
+                />
+                <div class="card__overlay">
+                  <div class="card__header">
+                    <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
+                      <path />
+                    </svg>
+                    <img
+                      class="card__thumb"
+                      src={cart}
+                      alt="Add"
+                    />
+                    <div class="card__header-text">
+                      <h3 class="card__title">Name:</h3>
+                      <span class="card__status">Price</span>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-8">
+                    <p class="card__description">Description</p>
+              
+                    </div>
+                    <div className="col-4">
+                      <span>
+                      View More
+                      </span>
+                    </div>
+                  </div>
+                 
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div className="col-lg-3 col-md-6 col-12">
+          <ul class="cards">
+            <li>
+              <a href="" class="prod-card">
+                <img
+                  src="https://i.imgur.com/oYiTqum.jpg"
+                  class="card__image"
+                />
+                <div class="card__overlay">
+                  <div class="card__header">
+                    <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
+                      <path />
+                    </svg>
+                    <img
+                      class="card__thumb"
+                      src={cart}
+                      alt="Add"
+                    />
+                    <div class="card__header-text">
+                      <h3 class="card__title">Name:</h3>
+                      <span class="card__status">Price</span>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-8">
+                    <p class="card__description">Description</p>
+              
+                    </div>
+                    <div className="col-4">
+                      <span>
+                      View More
+                      </span>
+                    </div>
+                  </div>
+                 
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+          <div className="col-lg-3 col-md-6 col-12">
+          <ul class="cards">
+            <li>
+              <a href="" class="prod-card">
+                <img
+                  src="https://i.imgur.com/oYiTqum.jpg"
+                  class="card__image"
+                />
+                <div class="card__overlay">
+                  <div class="card__header">
+                    <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
+                      <path />
+                    </svg>
+                    <img
+                      class="card__thumb"
+                      src={cart}
+                      alt="Add"
+                    />
+                    <div class="card__header-text">
+                      <h3 class="card__title">Name:</h3>
+                      <span class="card__status">Price</span>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-8">
+                    <p class="card__description">Description</p>
+              
+                    </div>
+                    <div className="col-4">
+                      <span>
+                      View More
+                      </span>
+                    </div>
+                  </div>
+                 
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
 
-      <section className="products col-12 row mt-5">
-        <div className="product-card col-3">
+        <div className="col-lg-3 col-md-6 col-12">
           <ul class="cards">
             <li>
-              <a href="" class="card">
+              <a href="" class="prod-card">
                 <img
                   src="https://i.imgur.com/oYiTqum.jpg"
                   class="card__image"
-                  alt=""
                 />
                 <div class="card__overlay">
                   <div class="card__header">
@@ -30,28 +185,38 @@ function Product () {
                     </svg>
                     <img
                       class="card__thumb"
-                      src="https://i.imgur.com/7D7I6dI.png"
-                      alt=""
+                      src={cart}
+                      alt="Add"
                     />
                     <div class="card__header-text">
-                      <h3 class="card__title">Jessica Parker</h3>
-                      <span class="card__status">1 hour ago</span>
+                      <h3 class="card__title">Name:</h3>
+                      <span class="card__status">Price</span>
                     </div>
                   </div>
-                  <p class="card__description">Lorem ipsum</p>
+                  <div className="row">
+                    <div className="col-8">
+                    <p class="card__description">Description</p>
+              
+                    </div>
+                    <div className="col-4">
+                      <span>
+                      View More
+                      </span>
+                    </div>
+                  </div>
+                 
                 </div>
               </a>
             </li>
           </ul>
         </div>
-        <div className="product-card col-3">
+        <div className="col-lg-3 col-md-6 col-12">
           <ul class="cards">
             <li>
-              <a href="" class="card">
+              <a href="" class="prod-card">
                 <img
                   src="https://i.imgur.com/oYiTqum.jpg"
                   class="card__image"
-                  alt=""
                 />
                 <div class="card__overlay">
                   <div class="card__header">
@@ -60,28 +225,38 @@ function Product () {
                     </svg>
                     <img
                       class="card__thumb"
-                      src="https://i.imgur.com/7D7I6dI.png"
-                      alt=""
+                      src={cart}
+                      alt="Add"
                     />
                     <div class="card__header-text">
-                      <h3 class="card__title">Jessica Parker</h3>
-                      <span class="card__status">1 hour ago</span>
+                      <h3 class="card__title">Name:</h3>
+                      <span class="card__status">Price</span>
                     </div>
                   </div>
-                  <p class="card__description">Lorem ipsum</p>
+                  <div className="row">
+                    <div className="col-8">
+                    <p class="card__description">Description</p>
+              
+                    </div>
+                    <div className="col-4">
+                      <span>
+                      View More
+                      </span>
+                    </div>
+                  </div>
+                 
                 </div>
               </a>
             </li>
           </ul>
         </div>
-        <div className="product-card col-3">
+        <div className="col-lg-3 col-md-6 col-12">
           <ul class="cards">
             <li>
-              <a href="" class="card">
+              <a href="" class="prod-card">
                 <img
                   src="https://i.imgur.com/oYiTqum.jpg"
                   class="card__image"
-                  alt=""
                 />
                 <div class="card__overlay">
                   <div class="card__header">
@@ -90,28 +265,38 @@ function Product () {
                     </svg>
                     <img
                       class="card__thumb"
-                      src="https://i.imgur.com/7D7I6dI.png"
-                      alt=""
+                      src={cart}
+                      alt="Add"
                     />
                     <div class="card__header-text">
-                      <h3 class="card__title">Jessica Parker</h3>
-                      <span class="card__status">1 hour ago</span>
+                      <h3 class="card__title">Name:</h3>
+                      <span class="card__status">Price</span>
                     </div>
                   </div>
-                  <p class="card__description">Lorem ipsum</p>
+                  <div className="row">
+                    <div className="col-8">
+                    <p class="card__description">Description</p>
+              
+                    </div>
+                    <div className="col-4">
+                      <span>
+                      View More
+                      </span>
+                    </div>
+                  </div>
+                 
                 </div>
               </a>
             </li>
           </ul>
         </div>
-        <div className="product-card col-3">
+          <div className="col-lg-3 col-md-6 col-12">
           <ul class="cards">
             <li>
-              <a href="" class="card">
+              <a href="" class="prod-card">
                 <img
                   src="https://i.imgur.com/oYiTqum.jpg"
                   class="card__image"
-                  alt=""
                 />
                 <div class="card__overlay">
                   <div class="card__header">
@@ -120,142 +305,34 @@ function Product () {
                     </svg>
                     <img
                       class="card__thumb"
-                      src="https://i.imgur.com/7D7I6dI.png"
-                      alt=""
+                      src={cart}
+                      alt="Add"
                     />
                     <div class="card__header-text">
-                      <h3 class="card__title">Jessica Parker</h3>
-                      <span class="card__status">1 hour ago</span>
+                      <h4 class="card__title">Name:</h4>
+                      <span class="card__status">Price</span>
                     </div>
                   </div>
-                  <p class="card__description">Lorem ipsum</p>
+                  <div className="row">
+                    <div className="col-8">
+                    <p class="card__description">Description</p>
+              
+                    </div>
+                    <div className="col-4">
+                      <span>
+                      View More
+                      </span>
+                    </div>
+                  </div>
+                 
                 </div>
               </a>
             </li>
           </ul>
         </div>
-        <div className="product-card col-3">
-          <ul class="cards">
-            <li>
-              <a href="" class="card">
-                <img
-                  src="https://i.imgur.com/oYiTqum.jpg"
-                  class="card__image"
-                  alt=""
-                />
-                <div class="card__overlay">
-                  <div class="card__header">
-                    <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
-                      <path />
-                    </svg>
-                    <img
-                      class="card__thumb"
-                      src="https://i.imgur.com/7D7I6dI.png"
-                      alt=""
-                    />
-                    <div class="card__header-text">
-                      <h3 class="card__title">Jessica Parker</h3>
-                      <span class="card__status">1 hour ago</span>
-                    </div>
-                  </div>
-                  <p class="card__description">Lorem ipsum</p>
-                </div>
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div className="product-card col-3">
-          <ul class="cards">
-            <li>
-              <a href="" class="card">
-                <img
-                  src="https://i.imgur.com/oYiTqum.jpg"
-                  class="card__image"
-                  alt=""
-                />
-                <div class="card__overlay">
-                  <div class="card__header">
-                    <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
-                      <path />
-                    </svg>
-                    <img
-                      class="card__thumb"
-                      src="https://i.imgur.com/7D7I6dI.png"
-                      alt=""
-                    />
-                    <div class="card__header-text">
-                      <h3 class="card__title">Jessica Parker</h3>
-                      <span class="card__status">1 hour ago</span>
-                    </div>
-                  </div>
-                  <p class="card__description">Lorem ipsum</p>
-                </div>
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div className="product-card col-3">
-          <ul class="cards">
-            <li>
-              <a href="" class="card">
-                <img
-                  src="https://i.imgur.com/oYiTqum.jpg"
-                  class="card__image"
-                  alt=""
-                />
-                <div class="card__overlay">
-                  <div class="card__header">
-                    <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
-                      <path />
-                    </svg>
-                    <img
-                      class="card__thumb"
-                      src="https://i.imgur.com/7D7I6dI.png"
-                      alt=""
-                    />
-                    <div class="card__header-text">
-                      <h3 class="card__title">Jessica Parker</h3>
-                      <span class="card__status">1 hour ago</span>
-                    </div>
-                  </div>
-                  <p class="card__description">Lorem ipsum</p>
-                </div>
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div className="product-card col-3">
-          <ul class="cards">
-            <li>
-              <a href="" class="card">
-                <img
-                  src="https://i.imgur.com/oYiTqum.jpg"
-                  class="card__image"
-                  alt=""
-                />
-                <div class="card__overlay">
-                  <div class="card__header">
-                    <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
-                      <path />
-                    </svg>
-                    <img
-                      class="card__thumb"
-                      src="https://i.imgur.com/7D7I6dI.png"
-                      alt=""
-                    />
-                    <div class="card__header-text">
-                      <h3 class="card__title">Jessica Parker</h3>
-                      <span class="card__status">1 hour ago</span>
-                    </div>
-                  </div>
-                  <p class="card__description">Lorem ipsum</p>
-                </div>
-              </a>
-            </li>
-          </ul>
-        </div>
+
         <nav aria-label="Page navigation example">
-  <ul class="pagination">
+  <ul class="pagination justify-content-center">
     <li class="page-item">
       <a class="page-link" href="#" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>

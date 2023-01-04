@@ -10,21 +10,22 @@ import Dashboard from './components/Dashboard';
 // import NavBar from "./NavBar";
 import ReactDOM from 'react-dom'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faUser, faHome, faMessage, faPager, faGears, faSquareRss, faIdBadge, faBagShopping, faSort, faIndent, faSitemap, faRankingStar} from '@fortawesome/free-solid-svg-icons'
+import {faFacebook, faGithub, faInstagram, faLinkedin, } from '@fortawesome/free-brands-svg-icons'
+
 import Login from './components/Login';
 import Registeration from './components/Registeration';
 
 
-library.add( faUser, faHome, faMessage, faPager, faGears, faSquareRss, faIdBadge, faBagShopping, faSort, faIndent, faSitemap, faRankingStar)
+library.add( faFacebook, faInstagram, faGithub, faLinkedin)
 function App() {
   return (
     <>
- <NavBar/>
 
-  <Bid/>
-<Footer/>
+{/* <Home/> */}
+  {/* <Bid/> */}
+{/* <Footer/> */}
  {/* <Dashboard/> */}
- {/* <Login/> */}
+ <Login/>
  {/* <Registeration/> */}
     </>
 

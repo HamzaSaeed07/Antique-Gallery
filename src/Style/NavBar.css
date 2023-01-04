@@ -1,5 +1,6 @@
 
 #trapezoid {
+  z-index: 9999;
     -webkit-box-sizing: content-box;
     -moz-box-sizing: content-box;
     box-sizing: content-box;

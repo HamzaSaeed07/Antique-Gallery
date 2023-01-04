@@ -1,6 +1,7 @@
 import React from "react";
 import "../Style/Footer.css"
 import * as Icon from 'react-bootstrap-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 function Footer() {
   return (
     <div>
@@ -9,7 +10,7 @@ function Footer() {
           <div class="content">
             <form class="subscription">
               <input
-                class="add-email"
+                class="add-email m-0"
                 type="email"
                 placeholder="subscribe@me.now"
               />
@@ -30,15 +31,15 @@ function Footer() {
 
         
           <p class="social mt-2">
-            <a ><span class="bi bi-twitter"></span></a>
-            <a ><span class="bi bi-facebook"></span></a>
-            <a ><span class="bi bi-instagram"></span></a>
-            <a ><span class="bi bi-linkedin"></span></a>
+            <a >  <FontAwesomeIcon icon="fa-brands fa-facebook" style={{height:'40px'}}/></a>
+            <a ><FontAwesomeIcon icon="fa-brands fa-instagram" style={{height:'40px'}}/></a>
+            <a ><FontAwesomeIcon icon="fa-brands fa-linkedin" style={{height:'40px'}}/></a>
+            <a ><FontAwesomeIcon icon="fa-brands fa-github" style={{height:'40px'}}/></a>
           </p>
         </div>
-        <div class="col-md-8 ms-auto">
-          <div class="row">
-            <div class="col-md-3 ">
+        <div class="col-md-8 row p-4">
+       
+            <div class="col-md-3">
               <h3>Service</h3>
         
             </div>
@@ -55,7 +56,7 @@ function Footer() {
               <h3>Location: H-10 Islamabad</h3>
             </div>
           
-          </div>
+         
 
           <div class="row text-center mt-5">
             <div class="col-md-6">

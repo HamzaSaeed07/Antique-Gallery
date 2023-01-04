@@ -8,7 +8,7 @@ function Dashboard(){
 				{/* <h1><a href="index.html" class="logo">M.</a></h1> */}
         <ul class="list-unstyled components mb-5">
           <li class="active">
-            <a href="#"><span><FontAwesomeIcon icon="fa-solid fa-sitemap" /></span> Orders</a>
+            <a href="#"><span><FontAwesomeIcon icon="fa-solid fa-faUser" /></span> Orders</a>
           </li>
           <li>
               <a href="#"><span><FontAwesomeIcon icon="fa-solid fa-indent" /></span> Category</a>

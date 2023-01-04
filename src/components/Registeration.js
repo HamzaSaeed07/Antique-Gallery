@@ -7,7 +7,7 @@ function Registeration() {
         <div class="shape"></div>
       </div>
       <form>
-        <h5>Welcome toAntique Gallery</h5>
+        <h5>Welcome to Antique Gallery</h5>
         <label for="username">Name</label>
         <input type="text" placeholder="Enter Name" id="username" />
         <label for="username">Email</label>
