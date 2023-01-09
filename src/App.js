@@ -8,30 +8,29 @@ import Catagories from './components/Catagories';
 import Bid from './components/Bid';
 import Dashboard from './components/Dashboard';
 // import NavBar from "./NavBar";
-import ReactDOM from 'react-dom'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import {faFacebook, faGithub, faInstagram, faLinkedin, } from '@fortawesome/free-brands-svg-icons'
+import ReactDOM from 'react-dom';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faFacebook, faGithub, faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 
 import Login from './components/Login';
 import Registeration from './components/Registeration';
 import Detail from './components/Detail';
+import Routing from './routes/Routing';
 
-
-library.add( faFacebook, faInstagram, faGithub, faLinkedin)
+library.add(faFacebook, faInstagram, faGithub, faLinkedin);
 function App() {
   return (
     <>
+      {/* <Home />
+      <Bid />
+      <Footer />
+      <Dashboard />
+      <Login/>
+      <Registeration />
+      <Detail/> */}
 
-<Home/>
-  {/* <Bid/> */}
-<Footer/>
- {/* <Dashboard/> */}
- {/* <Login/> */}
- {/* <Registeration/> */}
- {/* <Detail/> */}
+      <Routing />
     </>
-
-
   );
 }
 
