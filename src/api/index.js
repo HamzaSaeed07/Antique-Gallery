@@ -7,19 +7,31 @@ export const api = createApi({
   reducerPath: 'antique-api',
   tagTypes: ['User', 'Products', 'Customers', 'Admin', 'Seller'],
   endpoints: build => ({
-    getUser: build.query({
-      query: id => `general/user/${id}`,
-      providesTags: ['User'],
+    sellerRegister: build.mutation({
+      query: data => {
+        return {
+          url: 'Sellers/',
+          method: 'POST',
+          body: data,
+        };
+      },
+      providesTags: ['Seller'],
+    }),
+    Login: build.mutation({
+      query: data => {
+        return {
+          url: 'Sellers/',
+          method: 'POST',
+          body: data,
+        };
+      },
+      providesTags: ['Seller'],
     }),
     getProducts: build.query({
       query: () => 'Products',
       providesTags: ['Products'],
     }),
-    getCustomers: build.query({
-      query: () => 'client/customers',
-      providesTags: ['Customers'],
-    }),
   }),
 });
 
-export const { useGetUserQuery, useGetProductsQuery, useGetCustomersQuery } = api;
+export const { useGetProductsQuery, useSellerRegisterMutation, useLoginMutation } = api;

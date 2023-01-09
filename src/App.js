@@ -1,5 +1,6 @@
 import './App.css';
 import Home from './components/Home';
+import { Toaster } from 'react-hot-toast';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Product from './components/Product';
 import Footer from './components/Footer';
@@ -21,6 +22,7 @@ library.add(faFacebook, faInstagram, faGithub, faLinkedin);
 function App() {
   return (
     <>
+      <Toaster />
       {/* <Home />
       <Bid />
       <Footer />
