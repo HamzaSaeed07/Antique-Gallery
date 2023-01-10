@@ -2,10 +2,13 @@ import React from 'react';
 import cart from '../images/Cart-add-icon.png';
 import '../Style/Products.css';
 import { useGetProductsQuery } from '../api';
+import { useNavigate } from 'react-router-dom';
+import Loader from './Spinner';
 
 function Product() {
   const { data, isLoading } = useGetProductsQuery();
-  console.log(data);
+  const navigate = useNavigate();
+
   return (
     <div>
       <section className='col-12 row mt-5'>
@@ -19,10 +22,10 @@ function Product() {
             </h6>
           </span>
         </div>
-        {isLoading && 'Loading....'}
+        {isLoading && <Loader />}
         {data?.map(product => {
           return (
-            <div className='col-lg-3 col-md-6 col-12'>
+            <div key={product.id} className='col-lg-3 col-md-6 col-12'>
               <ul className='cards'>
                 <li>
                   <div className='prod-card'>
@@ -43,7 +46,9 @@ function Product() {
                           <p className='card__description'>{product.Description}</p>
                         </div>
                         <div className='col-4'>
-                          <span>View More</span>
+                          <span style={{ cursor: 'pointer' }} onClick={() => navigate(`/products/${product.id}`)}>
+                            View More
+                          </span>
                         </div>
                       </div>
                     </div>

@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { useLoginMutation } from '../api';
 import '../Style/Login.css';
@@ -12,6 +13,19 @@ function Login() {
     e.preventDefault();
     loginUser({ email, password });
   };
+
+  console.log(response);
+
+  useEffect(() => {
+    const handleResponse = () => {
+      if (response.data?.message === 'User Login Successfully') {
+        return toast.success('User Login Success');
+      } else if (response.data?.message === 'Invalid Email or Password') {
+        return toast.error('Invalid Email or Password');
+      }
+    };
+    handleResponse();
+  }, [response]);
 
   const navigate = useNavigate();
   return (

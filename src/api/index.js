@@ -7,25 +7,25 @@ export const api = createApi({
   reducerPath: 'antique-api',
   tagTypes: ['User', 'Products', 'Customers', 'Admin', 'Seller'],
   endpoints: build => ({
-    sellerRegister: build.mutation({
+    Register: build.mutation({
       query: data => {
         return {
-          url: 'Sellers/',
+          url: 'Register/',
           method: 'POST',
           body: data,
         };
       },
-      providesTags: ['Seller'],
+      providesTags: ['User'],
     }),
     Login: build.mutation({
       query: data => {
         return {
-          url: 'Sellers/',
+          url: 'Buyer_Login/',
           method: 'POST',
           body: data,
         };
       },
-      providesTags: ['Seller'],
+      providesTags: ['User'],
     }),
     getProducts: build.query({
       query: () => 'Products',
@@ -34,4 +34,4 @@ export const api = createApi({
   }),
 });
 
-export const { useGetProductsQuery, useSellerRegisterMutation, useLoginMutation } = api;
+export const { useGetProductsQuery, useRegisterMutation, useLoginMutation } = api;

@@ -5,6 +5,7 @@ import Home from '../components/Home';
 import Login from '../components/Login';
 import Product from '../components/Product';
 import Registeration from '../components/Registeration';
+import Detail from '../components/Detail';
 
 const Routing = () => {
   return (
@@ -12,6 +13,7 @@ const Routing = () => {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/products' element={<Product />} />
+        <Route path='/products/:id' element={<Detail />} />
         <Route path='/dashboard' element={<Dashboard />} />
         <Route path='/register' element={<Registeration />} />
         <Route path='/login' element={<Login />} />

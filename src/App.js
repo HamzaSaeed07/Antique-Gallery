@@ -23,10 +23,10 @@ function App() {
   return (
     <>
       <Toaster />
+      {/* <Dashboard /> */}
       {/* <Home />
       <Bid />
       <Footer />
-      <Dashboard />
       <Login/>
       <Registeration />
       <Detail/> */}

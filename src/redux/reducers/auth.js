@@ -12,8 +12,12 @@ const authReducer = createSlice({
       state.activeUser = action.payload;
     },
   },
+  logout: state => {
+    localStorage.removeItem('user');
+    state.activeUser = null;
+  },
 });
 
-export const { setActiveUser } = authReducer.actions;
+export const { setActiveUser, logout } = authReducer.actions;
 
 export default authReducer.reducer;
