@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Spinner } from 'react-bootstrap';
 import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -58,7 +59,7 @@ function Login() {
         </label>
         <input className='login-input' type='password' placeholder='Password' id='password' required onChange={e => setPassword(e.target.value)} />
 
-        <button>Log In</button>
+        <button>{response.isLoading ? <Spinner animation='border' variant='warning' /> : 'Log In'}</button>
         <div className='login-social'>
           <span className='login-social'>
             <p>

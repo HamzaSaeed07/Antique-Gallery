@@ -23,7 +23,7 @@ function Product() {
           </span>
         </div>
         {isLoading && <Loader />}
-        {data?.map(product => {
+        {data?.results.map(product => {
           return (
             <div key={product.id} className='col-lg-3 col-md-6 col-12'>
               <ul className='cards'>
