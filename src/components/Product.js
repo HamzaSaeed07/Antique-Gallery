@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import cart from '../images/Cart-add-icon.png';
 import '../Style/Products.css';
 import { useGetProductsQuery } from '../api';
 import { useNavigate } from 'react-router-dom';
 import Loader from './Spinner';
+import Pagination from './Pagination';
+import { useSelector } from 'react-redux';
 
 function Product() {
-  const { data, isLoading } = useGetProductsQuery();
+  const pageNumber = useSelector(state => state.globalReducer.pageNumber);
+  const { data, isLoading } = useGetProductsQuery(pageNumber);
   const navigate = useNavigate();
 
   return (
@@ -58,37 +61,7 @@ function Product() {
             </div>
           );
         })}
-        <nav aria-label='Page navigation example'>
-          <ul className='pagination justify-content-center'>
-            <li className='page-item'>
-              <a className='page-link' href='#' aria-label='Previous'>
-                <span aria-hidden='true'>&laquo;</span>
-                <span className='sr-only'>Previous</span>
-              </a>
-            </li>
-            <li className='page-item'>
-              <a className='page-link' href='#'>
-                1
-              </a>
-            </li>
-            <li className='page-item'>
-              <a className='page-link' href='#'>
-                2
-              </a>
-            </li>
-            <li className='page-item'>
-              <a className='page-link' href='#'>
-                3
-              </a>
-            </li>
-            <li className='page-item'>
-              <a className='page-link' href='#' aria-label='Next'>
-                <span aria-hidden='true'>&raquo;</span>
-                <span className='sr-only'>Next</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
+        <Pagination count={data?.count} pageCurrent={pageNumber} />
       </section>
     </div>
   );
