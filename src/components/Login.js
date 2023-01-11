@@ -62,7 +62,7 @@ function Login() {
         <div className='login-social'>
           <span className='login-social'>
             <p>
-              Don't have an account?
+              Don't have an account?{' '}
               <span className='register-link' onClick={() => navigate('/register')}>
                 Sign Up
               </span>

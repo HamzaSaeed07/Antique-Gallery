@@ -12,6 +12,7 @@ import { logout } from '../redux/reducers/auth';
 
 function NavBar() {
   const user = useSelector(state => state.authReducer.activeUser);
+  console.log(user);
   const dispatch = useDispatch();
 
   return (
