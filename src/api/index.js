@@ -20,7 +20,7 @@ export const api = createApi({
     Login: build.mutation({
       query: data => {
         return {
-          url: 'Buyer_Login/',
+          url: 'login_auth/',
           method: 'POST',
           body: data,
         };

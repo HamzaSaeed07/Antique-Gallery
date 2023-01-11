@@ -6,6 +6,8 @@ import '../Style/Registeration.css';
 function Registeration() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [address, setAddress] = useState('');
+  const [img, setImg] = useState('');
   const [role, setRole] = useState('Buyer');
   const [password, setPasswrod] = useState('');
 
@@ -16,7 +18,14 @@ function Registeration() {
   const [registerUser, response] = useRegisterMutation();
   const onSubmit = e => {
     e.preventDefault();
-    registerUser({ name, email, Roll: capitalizeFirstLetter(role), password });
+    const data = new FormData();
+    data.append('name', name);
+    data.append('email', email);
+    data.append('img', img);
+    data.append('password', password);
+    data.append('Roll', capitalizeFirstLetter(role));
+    data.append('Address', address);
+    registerUser(data);
   };
 
   const navigate = useNavigate();
@@ -47,8 +56,12 @@ function Registeration() {
           <option value='Buyer'>Buyer</option>
           <option value='Seller'>Seller</option>
         </select>
+        <label htmlFor='adress'>Adress</label>
+        <input type='adress' placeholder='Adress' id='adress' onChange={e => setAddress(e.target.value)} />
         <label htmlFor='password'>Password</label>
         <input type='password' placeholder='Password' id='password' required onChange={e => setPasswrod(e.target.value)} />
+        <label htmlFor='image'>Image</label>
+        <input type='file' id='image' accept='image/*' onChange={e => setImg(e.target.files[0])} />
         <button type='submit'>Sign Up</button>
         <div className='social'>
           <span className='fb'>

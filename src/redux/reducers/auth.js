@@ -11,10 +11,10 @@ const authReducer = createSlice({
     setActiveUser: (state, action) => {
       state.activeUser = action.payload;
     },
-  },
-  logout: state => {
-    localStorage.removeItem('user');
-    state.activeUser = null;
+    logout: state => {
+      localStorage.removeItem('user');
+      state.activeUser = null;
+    },
   },
 });
 

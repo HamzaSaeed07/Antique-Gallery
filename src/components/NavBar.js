@@ -7,8 +7,13 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../redux/reducers/auth';
 
 function NavBar() {
+  const user = useSelector(state => state.authReducer.activeUser);
+  const dispatch = useDispatch();
+
   return (
     <div className='fixed-top'>
       <Navbar bg='transparent' expand='lg'>
@@ -25,11 +30,18 @@ function NavBar() {
               <NavLink to='/bid'>
                 <p style={{ color: '#FFD700' }}>Auction</p>
               </NavLink>
-              <NavLink to='/login'>
-                <p style={{ color: '#FFD700' }}>Login</p>
-              </NavLink>
+              {user ? (
+                <button onClick={() => dispatch(logout())}>
+                  <p style={{ color: '#FFD700' }}>Logout</p>
+                </button>
+              ) : (
+                <NavLink to='/login'>
+                  <p style={{ color: '#FFD700' }}>Login</p>
+                </NavLink>
+              )}
             </Nav>
           </Navbar.Collapse>
+          <p>{user && `Welcome ${user.email}`}</p>
         </Container>
       </Navbar>
     </div>

@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useLoginMutation } from '../api';
+import { setActiveUser } from '../redux/reducers/auth';
 import '../Style/Login.css';
 function Login() {
   const [email, setEmail] = useState('');
@@ -15,19 +17,28 @@ function Login() {
   };
 
   console.log(response);
-
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   useEffect(() => {
     const handleResponse = () => {
-      if (response.data?.message === 'User Login Successfully') {
-        return toast.success('User Login Success');
-      } else if (response.data?.message === 'Invalid Email or Password') {
+      if (response.data && Array.isArray(response.data)) {
+        toast.success('User Login Success');
+        dispatch(setActiveUser(response.data[0]));
+        localStorage.setItem('user', JSON.stringify(response.data[0]));
+        if (response.data[0].Roll === 'Buyer') {
+          navigate('/products');
+        } else if (response.data[0].Roll === 'Seller') {
+          navigate('/dashboard');
+        } else if (response.data[0].Roll === 'Admin') {
+          navigate('/dashboard');
+        }
+      } else if (response?.data === 'email or password is incorrect') {
         return toast.error('Invalid Email or Password');
       }
     };
     handleResponse();
   }, [response]);
 
-  const navigate = useNavigate();
   return (
     <div>
       <div className='login-background'>
