@@ -29,7 +29,7 @@ function Login() {
         if (response.data[0].Roll === 'Buyer') {
           navigate('/products');
         } else if (response.data[0].Roll === 'Seller') {
-          navigate('/dashboard');
+          navigate('/seller/products');
         } else if (response.data[0].Roll === 'Admin') {
           navigate('/dashboard');
         }
@@ -59,7 +59,7 @@ function Login() {
         </label>
         <input className='login-input' type='password' placeholder='Password' id='password' required onChange={e => setPassword(e.target.value)} />
 
-        <button>{response.isLoading ? <Spinner animation='border' variant='warning' /> : 'Log In'}</button>
+        <button className='login-button'>{response.isLoading ? <Spinner animation='border' variant='warning' /> : 'Log In'}</button>
         <div className='login-social'>
           <span className='login-social'>
             <p>

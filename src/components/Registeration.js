@@ -45,24 +45,38 @@ function Registeration() {
         <div className='shape'></div>
       </div>
       {}
-      <form onSubmit={onSubmit}>
+      <form className='form-container' onSubmit={onSubmit}>
         <h5>Welcome to Antique Gallery</h5>
-        <label htmlFor='username'>Name</label>
+        <label className='form-label' htmlFor='username'>
+          Name
+        </label>
         <input type='text' placeholder='Enter Name' id='username' required onChange={e => setName(e.target.value)} />
-        <label htmlFor='username'>Email</label>
+        <label className='form-label' htmlFor='username'>
+          Email
+        </label>
         <input type='email' placeholder='Enter Email' id='useremail' required onChange={e => setEmail(e.target.value)} />
-        <label htmlFor='role'>Select your role:</label>
-        <select name='role' value={role} id='role' onChange={e => setRole(e.target.value)}>
+        <label className='form-label' htmlFor='role'>
+          Select your role:
+        </label>
+        <select className='form-select' name='role' value={role} id='role' onChange={e => setRole(e.target.value)}>
           <option value='Buyer'>Buyer</option>
           <option value='Seller'>Seller</option>
         </select>
-        <label htmlFor='adress'>Adress</label>
+        <label className='form-label' htmlFor='adress'>
+          Adress
+        </label>
         <input type='adress' placeholder='Adress' id='adress' onChange={e => setAddress(e.target.value)} />
-        <label htmlFor='password'>Password</label>
+        <label className='form-label' htmlFor='password'>
+          Password
+        </label>
         <input type='password' placeholder='Password' id='password' required onChange={e => setPasswrod(e.target.value)} />
-        <label htmlFor='image'>Image</label>
+        <label className='form-label' htmlFor='image'>
+          Image
+        </label>
         <input type='file' id='image' accept='image/*' onChange={e => setImg(e.target.files[0])} />
-        <button type='submit'>Sign Up</button>
+        <button className='register-button' type='submit'>
+          Sign Up
+        </button>
         <div className='social'>
           <span className='fb'>
             <p>
