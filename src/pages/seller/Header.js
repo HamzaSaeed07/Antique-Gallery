@@ -5,10 +5,9 @@ import { BoxArrowRight } from 'react-bootstrap-icons';
 import { useSelector } from 'react-redux';
 function Header() {
   const { activeUser } = useSelector(state => state.authReducer);
-  console.log(activeUser);
   return (
     <>
-      <Navbar bg='light' expand='lg'>
+      <Navbar bg='light' expand='lg' style={{ zIndex: '-1' }}>
         <Container>
           <Navbar.Brand href='#home'>Welcome</Navbar.Brand>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />

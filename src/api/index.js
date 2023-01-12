@@ -5,7 +5,7 @@ export const api = createApi({
     baseUrl: process.env.REACT_APP_BASE_URL,
   }),
   reducerPath: 'antique-api',
-  tagTypes: ['User', 'Products', 'Customers', 'Admin', 'Seller'],
+  tagTypes: ['User', 'Products', 'Customers', 'Admin', 'Seller', 'Category'],
   endpoints: build => ({
     Register: build.mutation({
       query: data => {
@@ -31,7 +31,40 @@ export const api = createApi({
       query: page => `Products/?page=${page}`,
       providesTags: ['Products'],
     }),
+    getCategories: build.query({
+      query: () => 'Product_category/',
+      providesTags: ['Category'],
+    }),
+    getSellerProducts: build.mutation({
+      query: id => {
+        return {
+          url: 'seller_products/',
+          method: 'POST',
+          body: id,
+        };
+      },
+      providesTags: ['Seller'],
+    }),
+    addProduct: build.mutation({
+      query: data => {
+        return {
+          url: 'Products/',
+          method: 'POST',
+          body: data,
+        };
+      },
+      invalidatesTags: ['Products'],
+    }),
+    deleteProduct: build.mutation({
+      query: id => {
+        return {
+          url: `Products/${id}/`,
+          method: 'DELETE',
+        };
+      },
+      invalidatesTags: ['Products'],
+    }),
   }),
 });
 
-export const { useGetProductsQuery, useRegisterMutation, useLoginMutation } = api;
+export const { useGetProductsQuery, useRegisterMutation, useLoginMutation, useGetSellerProductsMutation, useGetCategoriesQuery, useAddProductMutation, useDeleteProductMutation } = api;
