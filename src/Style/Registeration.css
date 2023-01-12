@@ -48,14 +48,14 @@
   text-align: center;
 }
 
-.form-label {
+.reg-form-label {
   display: block;
   margin-top: 20px;
   font-size: 16px;
   font-weight: 500;
 }
-.form-input,
-.form-select {
+.reg-form-input,
+.reg-form-select {
   display: block;
   height: 50px;
   width: 100%;
