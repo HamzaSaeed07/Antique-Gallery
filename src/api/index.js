@@ -31,6 +31,10 @@ export const api = createApi({
       query: page => `Products/?page=${page}`,
       providesTags: ['Products'],
     }),
+    getProudctById: build.query({
+      query: id => `Products/${id}/`,
+      providesTags: ['Products'],
+    }),
     getCategories: build.query({
       query: () => 'Product_category/',
       providesTags: ['Category'],
@@ -77,4 +81,4 @@ export const api = createApi({
   }),
 });
 
-export const { useGetProductsQuery, useRegisterMutation, useLoginMutation, useGetSellerProductsMutation, useGetCategoriesQuery, useAddProductMutation, useDeleteProductMutation, useEditProductMutation } = api;
+export const { useGetProductsQuery, useRegisterMutation, useLoginMutation, useGetSellerProductsMutation, useGetCategoriesQuery, useAddProductMutation, useDeleteProductMutation, useEditProductMutation, useGetProudctByIdQuery } = api;

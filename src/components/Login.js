@@ -17,7 +17,6 @@ function Login() {
     loginUser({ email, password });
   };
 
-  console.log(response);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
