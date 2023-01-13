@@ -12,7 +12,7 @@ import { logout } from '../redux/reducers/auth';
 
 function NavBar() {
   const user = useSelector(state => state.authReducer.activeUser);
-  console.log(user);
+
   const dispatch = useDispatch();
 
   return (
@@ -42,7 +42,8 @@ function NavBar() {
               )}
             </Nav>
           </Navbar.Collapse>
-          <p>{user && `Welcome ${user.email}`}</p>
+          <p>{user && `Welcome ${user.name}`}</p>
+          {user && <img src={user.img} alt='user-profile' width={30} height={30} style={{ marginLeft: '10px', borderRadius: '50%' }} />}
         </Container>
       </Navbar>
     </div>

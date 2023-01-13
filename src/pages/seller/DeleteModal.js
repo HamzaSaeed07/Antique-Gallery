@@ -6,7 +6,7 @@ function DeleteModal(props) {
     props.onHide();
   }
   return (
-    <Modal show={props.show} onHide={props.onHide} size='lg' aria-labelledby='contained-modal-title-vcenter' centered>
+    <Modal show={props.show} onHide={props.onHide} size='md' aria-labelledby='contained-modal-title-vcenter' centered>
       <Modal.Header closeButton>
         <Modal.Title id='contained-modal-title-vcenter'>Delete Confirmation</Modal.Title>
       </Modal.Header>

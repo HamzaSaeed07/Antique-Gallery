@@ -22,7 +22,7 @@ library.add(faFacebook, faInstagram, faGithub, faLinkedin);
 function App() {
   return (
     <>
-      <Toaster />
+      <Toaster position='bottom-center' />
       {/* <Dashboard /> */}
       {/* <Home />
       <Bid />

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Spinner } from 'react-bootstrap';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { useRegisterMutation } from '../api';
@@ -29,6 +30,7 @@ function Registeration() {
   };
 
   const navigate = useNavigate();
+  const loading = true;
 
   useEffect(() => {
     if (response.isSuccess) {
@@ -50,11 +52,11 @@ function Registeration() {
         <label className='reg-form-label' htmlFor='username'>
           Name
         </label>
-        <input type='text' placeholder='Enter Name' id='username' required onChange={e => setName(e.target.value)} />
+        <input className='reg-form-input' type='text' placeholder='Enter Name' id='username' required onChange={e => setName(e.target.value)} />
         <label className='reg-form-label' htmlFor='username'>
           Email
         </label>
-        <input type='email' placeholder='Enter Email' id='useremail' required onChange={e => setEmail(e.target.value)} />
+        <input className='reg-form-input' type='email' placeholder='Enter Email' id='useremail' required onChange={e => setEmail(e.target.value)} />
         <label className='reg-form-label' htmlFor='role'>
           Select your role:
         </label>
@@ -65,17 +67,17 @@ function Registeration() {
         <label className='reg-form-label' htmlFor='adress'>
           Adress
         </label>
-        <input type='adress' placeholder='Adress' id='adress' onChange={e => setAddress(e.target.value)} />
+        <input className='reg-form-input' type='adress' placeholder='Adress' id='adress' onChange={e => setAddress(e.target.value)} />
         <label className='reg-form-label' htmlFor='password'>
           Password
         </label>
-        <input type='password' placeholder='Password' id='password' required onChange={e => setPasswrod(e.target.value)} />
+        <input className='reg-form-input' type='password' placeholder='Password' id='password' required onChange={e => setPasswrod(e.target.value)} />
         <label className='reg-form-label' htmlFor='image'>
           Image
         </label>
-        <input type='file' id='image' accept='image/*' onChange={e => setImg(e.target.files[0])} />
+        <input className='reg-form-input' type='file' id='image' accept='image/*' onChange={e => setImg(e.target.files[0])} />
         <button className='register-button' type='submit'>
-          Sign Up
+          {response.isLoading ? <Spinner animation='border' variant='warning' /> : 'Sign Up'}
         </button>
         <div className='social'>
           <span className='fb'>

@@ -2,15 +2,24 @@ import React, { useEffect, useState } from 'react';
 import { Spinner } from 'react-bootstrap';
 import toast from 'react-hot-toast';
 import { useSelector } from 'react-redux';
-import { useDeleteProductMutation, useGetSellerProductsMutation } from '../../api';
+import { useDeleteProductMutation, useGetCategoriesQuery, useGetSellerProductsMutation } from '../../api';
 import DeleteModal from './DeleteModal';
+import EditModal from './EditModal';
 import Header from './Header';
 
 const SellerProducts = () => {
   const [modalShow, setModalShow] = useState(false);
+  const [openEditModal, setopenEditModal] = useState(false);
   const { activeUser } = useSelector(state => state.authReducer);
   const [getProducts, response] = useGetSellerProductsMutation();
   const [deleteProduct, { isSuccess }] = useDeleteProductMutation();
+  const { data } = useGetCategoriesQuery();
+
+  const getCategoryName = id => {
+    const find = data?.results?.find(cat => cat.id === id);
+    return find.category_name;
+  };
+
   useEffect(() => {
     getProducts({ id: activeUser.id });
   }, []);
@@ -45,7 +54,7 @@ const SellerProducts = () => {
                     <div className='mt-1 mb-1 spec-1'>
                       <span>Category: </span>
                       <span className='dot'></span>
-                      <span>{product.Category}</span>
+                      <span>{getCategoryName(product.Category)}</span>
                     </div>
 
                     <div className='mt-1 mb-1 spec-1'>
@@ -65,8 +74,9 @@ const SellerProducts = () => {
                       <h4 className='mr-1'>${product.price}</h4>
                     </div>
                     <h6 className='text-success'>{product.status}</h6>
+                    <EditModal getProducts={getProducts} sellerId={activeUser.id} show={openEditModal} product={product} onHide={() => setopenEditModal(false)} />
                     <div className='d-flex flex-column mt-4'>
-                      <button className='btn btn-primary btn-sm' type='button'>
+                      <button onClick={() => setopenEditModal(true)} className='btn btn-primary btn-sm' type='button'>
                         Edit
                       </button>
                       <DeleteModal show={modalShow} onHide={() => setModalShow(false)} id={product.id} deleteProduct={deleteProduct} />

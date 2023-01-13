@@ -55,6 +55,16 @@ export const api = createApi({
       },
       invalidatesTags: ['Products'],
     }),
+    editProduct: build.mutation({
+      query: data => {
+        return {
+          url: `Products/${data.get('id')}/`,
+          method: 'PATCH',
+          body: data,
+        };
+      },
+      invalidatesTags: ['Products'],
+    }),
     deleteProduct: build.mutation({
       query: id => {
         return {
@@ -67,4 +77,4 @@ export const api = createApi({
   }),
 });
 
-export const { useGetProductsQuery, useRegisterMutation, useLoginMutation, useGetSellerProductsMutation, useGetCategoriesQuery, useAddProductMutation, useDeleteProductMutation } = api;
+export const { useGetProductsQuery, useRegisterMutation, useLoginMutation, useGetSellerProductsMutation, useGetCategoriesQuery, useAddProductMutation, useDeleteProductMutation, useEditProductMutation } = api;

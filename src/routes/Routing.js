@@ -10,6 +10,7 @@ import Layout from './Layout';
 import Sidebar from '../pages/seller/Sidebar';
 import AddProduct from '../pages/seller/AddProduct';
 import SellerProducts from '../pages/seller/SellerProducts';
+import SellerProtected from './SellerProtected';
 
 const Routing = () => {
   return (
@@ -19,9 +20,11 @@ const Routing = () => {
         <Route path='/products' element={<Layout><Product /></Layout>} />
         <Route path='/products/:id' element={<Layout><Detail /></Layout>} />
         <Route path='/dashboard' element={<Dashboard />} />
+        <Route element={<SellerProtected/>}>
         <Route path='/seller/dashboard' element={<Sidebar />} />
         <Route path='/seller/add-product' element={<Sidebar><AddProduct /></Sidebar>} />
         <Route path='/seller/products' element={<Sidebar><SellerProducts /></Sidebar>} />
+        </Route>
         <Route path='/register' element={<Registeration />} />
         <Route path='/login' element={<Login />} />
         <Route path='/bid' element={<Layout><Bid /></Layout>} />

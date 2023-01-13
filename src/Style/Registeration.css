@@ -39,7 +39,8 @@
   color: #ffffff;
   letter-spacing: 0.5px;
   outline: none;
-  border: none;
+  /* Border none effect Spinner in sign up loading */
+  /* border: none;  */
 }
 .form-container h3 {
   font-size: 32px;

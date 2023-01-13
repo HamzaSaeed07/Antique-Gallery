@@ -2,12 +2,20 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { BoxArrowRight } from 'react-bootstrap-icons';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../../redux/reducers/auth';
+import { useNavigate } from 'react-router-dom';
 function Header() {
+  const navigate = useNavigate();
   const { activeUser } = useSelector(state => state.authReducer);
+  const dispatch = useDispatch();
+  const handleLogOut = () => {
+    dispatch(logout());
+    navigate('/login');
+  };
   return (
     <>
-      <Navbar bg='light' expand='lg' style={{ zIndex: '-1' }}>
+      <Navbar bg='light' expand='lg'>
         <Container>
           <Navbar.Brand href='#home'>Welcome</Navbar.Brand>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
@@ -17,7 +25,9 @@ function Header() {
               <div>
                 <img src={activeUser.img} alt='profile-pic' width={35} height={35} style={{ borderRadius: '50%' }} />
               </div>
-              <BoxArrowRight size='20px' style={{ cursor: 'pointer' }} />
+              <div onClick={handleLogOut} style={{ cursor: 'pointer' }}>
+                <BoxArrowRight size='20px' />
+              </div>
             </Nav>
           </Navbar.Collapse>
         </Container>

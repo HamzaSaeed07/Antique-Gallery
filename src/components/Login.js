@@ -25,7 +25,6 @@ function Login() {
       if (response.data && Array.isArray(response.data)) {
         toast.success('User Login Success');
         dispatch(setActiveUser(response.data[0]));
-        localStorage.setItem('user', JSON.stringify(response.data[0]));
         if (response.data[0].Roll === 'Buyer') {
           navigate('/products');
         } else if (response.data[0].Roll === 'Seller') {
