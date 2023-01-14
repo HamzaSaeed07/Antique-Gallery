@@ -30,16 +30,24 @@ function Registeration() {
   };
 
   const navigate = useNavigate();
-  const loading = true;
 
   useEffect(() => {
-    if (response.isSuccess) {
-      toast.success('Registration Success');
+    if (response?.data?.error) {
+      toast.error(response?.data?.error, {
+        position: 'top-center',
+      });
+    } else if (response?.data?.message === 'Username is Already Taken') {
+      toast.error(response?.data?.message, {
+        position: 'top-center',
+      });
+    } else if (response?.data) {
+      toast.success('User Registration Success', {
+        position: 'top-center',
+      });
       navigate('/login');
-    } else if (response.isError) {
-      toast.error('Something went wrong!');
     }
-  }, [response.isSuccess]);
+  }, [response]);
+  console.log(response);
   return (
     <div className='regs'>
       <div className='background'>

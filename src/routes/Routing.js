@@ -11,6 +11,8 @@ import Sidebar from '../pages/seller/Sidebar';
 import AddProduct from '../pages/seller/AddProduct';
 import SellerProducts from '../pages/seller/SellerProducts';
 import SellerProtected from './SellerProtected';
+import BuyerOrders from '../pages/buyer/BuyerOrders';
+import BuyerProtected from './BuyerProtect';
 
 const Routing = () => {
   return (
@@ -26,6 +28,9 @@ const Routing = () => {
         <Route path='/seller/products' element={<Sidebar><SellerProducts /></Sidebar>} />
         </Route>
         <Route path='/register' element={<Registeration />} />
+        <Route element={<BuyerProtected/>}>
+        <Route path='/buyer/orders' element={<BuyerOrders />} />
+        </Route>
         <Route path='/login' element={<Login />} />
         <Route path='/bid' element={<Layout><Bid /></Layout>} />
       </Routes>

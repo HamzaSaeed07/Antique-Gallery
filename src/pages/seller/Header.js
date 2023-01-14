@@ -15,15 +15,15 @@ function Header() {
   };
   return (
     <>
-      <Navbar bg='light' expand='lg'>
+      <Navbar bg='light'>
         <Container>
           <Navbar.Brand href='#home'>Welcome</Navbar.Brand>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='ml-auto justify-content-center align-items-center' style={{ gap: '1rem' }}>
-              <div>{activeUser.name}</div>
+              <div>{activeUser?.name}</div>
               <div>
-                <img src={activeUser.img} alt='profile-pic' width={35} height={35} style={{ borderRadius: '50%' }} />
+                <img src={activeUser?.img} alt='profile-pic' width={35} height={35} style={{ borderRadius: '50%' }} />
               </div>
               <div onClick={handleLogOut} style={{ cursor: 'pointer' }}>
                 <BoxArrowRight size='20px' />
