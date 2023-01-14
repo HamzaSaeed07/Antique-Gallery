@@ -39,6 +39,35 @@ export const api = createApi({
       query: () => 'Product_category/',
       providesTags: ['Category'],
     }),
+    addCategory: build.mutation({
+      query: data => {
+        return {
+          url: 'Product_category/',
+          method: 'POST',
+          body: data,
+        };
+      },
+      invalidatesTags: ['Category'],
+    }),
+    editCategory: build.mutation({
+      query: data => {
+        return {
+          url: `Product_category/${data.id}/`,
+          method: 'PATCH',
+          body: { category_name: data.category_name },
+        };
+      },
+      invalidatesTags: ['Category'],
+    }),
+    deleteCategory: build.mutation({
+      query: id => {
+        return {
+          url: `Product_category/${id}/`,
+          method: 'DELETE',
+        };
+      },
+      invalidatesTags: ['Category'],
+    }),
     getSellerProducts: build.mutation({
       query: id => {
         return {
@@ -111,4 +140,4 @@ export const api = createApi({
   }),
 });
 
-export const { useGetProductsQuery, useRegisterMutation, useLoginMutation, useGetSellerProductsMutation, useGetCategoriesQuery, useAddProductMutation, useDeleteProductMutation, useEditProductMutation, useGetProudctByIdQuery, useGetBuyerOrdersMutation, useDeleteOrderMutation, useAddOrderMutation } = api;
+export const { useGetProductsQuery, useRegisterMutation, useLoginMutation, useGetSellerProductsMutation, useGetCategoriesQuery, useAddProductMutation, useDeleteProductMutation, useEditProductMutation, useGetProudctByIdQuery, useGetBuyerOrdersMutation, useDeleteOrderMutation, useAddOrderMutation, useAddCategoryMutation, useEditCategoryMutation, useDeleteCategoryMutation } = api;

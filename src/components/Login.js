@@ -22,9 +22,7 @@ function Login() {
   useEffect(() => {
     const handleResponse = () => {
       if (response.data && Array.isArray(response.data)) {
-        toast.success('User Login Success', {
-          position: 'top-center',
-        });
+        toast.success('User Login Success');
         dispatch(setActiveUser(response.data[0]));
         if (response.data[0].Roll === 'Buyer') {
           navigate('/products');
@@ -34,9 +32,7 @@ function Login() {
           navigate('/dashboard');
         }
       } else if (response?.data === 'email or password is incorrect') {
-        return toast.error('Invalid Email or Password', {
-          position: 'top-center',
-        });
+        return toast.error('Invalid Email or Password');
       }
     };
     handleResponse();

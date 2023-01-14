@@ -33,17 +33,9 @@ function Registeration() {
 
   useEffect(() => {
     if (response?.data?.error) {
-      toast.error(response?.data?.error, {
-        position: 'top-center',
-      });
-    } else if (response?.data?.message === 'Username is Already Taken') {
-      toast.error(response?.data?.message, {
-        position: 'top-center',
-      });
+      toast.error(response?.data?.error);
     } else if (response?.data) {
-      toast.success('User Registration Success', {
-        position: 'top-center',
-      });
+      toast.success('User Registration Success');
       navigate('/login');
     }
   }, [response]);
