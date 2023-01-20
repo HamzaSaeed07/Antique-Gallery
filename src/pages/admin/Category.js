@@ -3,12 +3,13 @@ import { ListGroup, Spinner } from 'react-bootstrap';
 import { useAddCategoryMutation, useDeleteCategoryMutation, useEditCategoryMutation, useGetCategoriesQuery } from '../../api';
 import { PencilSquare, Trash } from 'react-bootstrap-icons';
 import '../../App.css';
+import Loader from '../../components/Spinner';
 
 const Category = () => {
   const [text, setText] = useState('');
   const [isEdit, setIsEdit] = useState();
   const [editText, setEditText] = useState('');
-  const { data } = useGetCategoriesQuery();
+  const { data, isLoading } = useGetCategoriesQuery();
   const [addCategory, response] = useAddCategoryMutation();
   const [deleteCategory, deleteResponse] = useDeleteCategoryMutation();
   const [editCategory, editResponse] = useEditCategoryMutation();
@@ -37,33 +38,37 @@ const Category = () => {
       </form>
       {deleteResponse.isLoading && <Spinner className='mb-1' style={{ marginLeft: '3.5rem' }} animation='border' variant='warning' size='sm' />}
       {editResponse.isLoading && <Spinner className='mb-1' style={{ marginLeft: '1rem' }} animation='border' variant='warning' size='sm' />}
-      {data?.results.map(cat => (
-        <ListGroup key={cat.id} className='mb-1'>
-          <ListGroup.Item as='li'>
-            {cat.id === isEdit ? (
-              <form onSubmit={handleEdit}>
-                <input placeholder='Type Category Name' required value={editText} className='pl-2' onChange={e => setEditText(e.target.value)} />
-              </form>
-            ) : (
-              <h6>{cat.category_name}</h6>
-            )}
-            <div className='d-flex align-items-center gap-3 pt-1 '>
-              <div
-                style={{ cursor: 'pointer' }}
-                onClick={() => {
-                  setIsEdit(cat.id);
-                  setEditText(cat.category_name);
-                }}
-              >
-                <PencilSquare size={18} color='blue' />
+      {isLoading ? (
+        <Loader />
+      ) : (
+        data?.results.map(cat => (
+          <ListGroup key={cat.id} className='mb-1'>
+            <ListGroup.Item as='li'>
+              {cat.id === isEdit ? (
+                <form onSubmit={handleEdit}>
+                  <input placeholder='Type Category Name' required value={editText} className='pl-2' onChange={e => setEditText(e.target.value)} />
+                </form>
+              ) : (
+                <h6>{cat.category_name}</h6>
+              )}
+              <div className='d-flex align-items-center gap-3 pt-1 '>
+                <div
+                  style={{ cursor: 'pointer' }}
+                  onClick={() => {
+                    setIsEdit(cat.id);
+                    setEditText(cat.category_name);
+                  }}
+                >
+                  <PencilSquare size={18} color='blue' />
+                </div>
+                <div onClick={() => handleDelete(cat.id)} style={{ cursor: 'pointer' }}>
+                  <Trash size={18} color='red' />
+                </div>
               </div>
-              <div onClick={() => handleDelete(cat.id)} style={{ cursor: 'pointer' }}>
-                <Trash size={18} color='red' />
-              </div>
-            </div>
-          </ListGroup.Item>
-        </ListGroup>
-      ))}
+            </ListGroup.Item>
+          </ListGroup>
+        ))
+      )}
     </>
   );
 };

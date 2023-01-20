@@ -20,11 +20,13 @@ import Biding from '../pages/admin/Biding'
 import Sellers from '../pages/admin/Sellers'
 import Buyers from '../pages/admin/Buyers'
 import AdminDashboard from '../pages/admin/AdminDashboard';
+import Page404 from '../components/Page404'
 
 const Routing = () => {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path='*' element= {<Page404/> }/>
         <Route path='/' element= {<Layout><Home /></Layout> }/>
         <Route path='/products' element={<Layout><Product /></Layout>} />
         <Route path='/products/:id' element={<Layout><Detail /></Layout>} />

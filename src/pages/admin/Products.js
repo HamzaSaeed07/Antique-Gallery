@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useGetCategoriesQuery, useGetProductsQuery } from '../../api';
 import Pagination from '../../components/Pagination';
+import Loader from '../../components/Spinner';
 
 const Products = () => {
   const pageNumber = useSelector(state => state.globalReducer.pageNumber);
@@ -16,11 +17,7 @@ const Products = () => {
   return (
     <div className='container mb-5'>
       <div className='d-flex justify-content-left row'>
-        {isLoading && (
-          <div style={{ height: '100vh', display: 'flex', justifyContent: 'center' }}>
-            <Spinner animation='border' variant='warning' />
-          </div>
-        )}
+        {isLoading && <Loader />}
         {data?.results.length === 0 ? (
           <h3>No Products</h3>
         ) : (
@@ -32,6 +29,11 @@ const Products = () => {
                 </div>
                 <div className='col-md-6 mt-1'>
                   <h5>{product.name}</h5>
+                  <div className='mt-1 mb-1 spec-1'>
+                    <span>Product ID: </span>
+                    <span className='dot'></span>
+                    <span>{product.id}</span>
+                  </div>
                   <div className='mt-1 mb-1 spec-1'>
                     <span>Category: </span>
                     <span className='dot'></span>

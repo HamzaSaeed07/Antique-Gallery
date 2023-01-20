@@ -61,7 +61,7 @@ const AdminDashboard = ({ children }) => {
             </div>
           </NavLink>
         ))}
-        <Button onClick={() => dispatch(logout())} variant='outline-secondary' style={{ marginLeft: isOpen ? '10px' : '2px' }}>
+        <Button onClick={() => dispatch(logout())} variant='outline-secondary' style={{ marginLeft: isOpen ? '10px' : '2px', marginTop: '20px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <span style={{ display: isOpen ? 'block' : 'none' }}>Logout</span> <Icon.BoxArrowRight />
           </div>

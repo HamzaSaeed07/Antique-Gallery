@@ -5,7 +5,7 @@ export const api = createApi({
     baseUrl: process.env.REACT_APP_BASE_URL,
   }),
   reducerPath: 'antique-api',
-  tagTypes: ['User', 'Products', 'Orders', 'Admin', 'Seller', 'Category'],
+  tagTypes: ['User', 'Products', 'Orders', 'Admin', 'Seller', 'Category', 'Bidding'],
   endpoints: build => ({
     Register: build.mutation({
       query: data => {
@@ -125,7 +125,7 @@ export const api = createApi({
           body: data,
         };
       },
-      providesTags: ['Buyer'],
+      invalidatesTags: ['Buyer'],
     }),
     deleteOrder: build.mutation({
       query: id => {
@@ -137,7 +137,49 @@ export const api = createApi({
       },
       invalidatesTags: ['Buyer'],
     }),
+    getBiddingList: build.query({
+      query: () => 'Product_Bidding/',
+      providesTags: ['Bidding'],
+    }),
+    getBidById: build.query({
+      query: id => {
+        return {
+          url: `Product_Bidding/${id}/`,
+          method: 'GET',
+        };
+      },
+      providesTags: ['Products'],
+    }),
+    createNewBid: build.mutation({
+      query: data => {
+        return {
+          url: 'Product_Bidding/',
+          method: 'POST',
+          body: data,
+        };
+      },
+      invalidatesTags: ['Bidding'],
+    }),
+    updateBid: build.mutation({
+      query: data => {
+        return {
+          url: `Update_bidding_schedule/${data.id}/`,
+          method: 'PATCH',
+          body: data,
+        };
+      },
+      invalidatesTags: ['Bidding'],
+    }),
+    deleteBid: build.mutation({
+      query: id => {
+        return {
+          url: `Product_Bidding/${id}/`,
+          method: 'DELETE',
+        };
+      },
+      invalidatesTags: ['Bidding'],
+    }),
   }),
 });
 
-export const { useGetProductsQuery, useRegisterMutation, useLoginMutation, useGetSellerProductsMutation, useGetCategoriesQuery, useAddProductMutation, useDeleteProductMutation, useEditProductMutation, useGetProudctByIdQuery, useGetBuyerOrdersMutation, useDeleteOrderMutation, useAddOrderMutation, useAddCategoryMutation, useEditCategoryMutation, useDeleteCategoryMutation } = api;
+export const { useGetProductsQuery, useRegisterMutation, useLoginMutation, useGetSellerProductsMutation, useGetCategoriesQuery, useAddProductMutation, useDeleteProductMutation, useEditProductMutation, useGetProudctByIdQuery, useGetBuyerOrdersMutation, useDeleteOrderMutation, useAddOrderMutation, useAddCategoryMutation, useEditCategoryMutation, useDeleteCategoryMutation, useGetBiddingListQuery, useGetBidByIdQuery, useUpdateBidMutation, useDeleteBidMutation, useCreateNewBidMutation } = api;
