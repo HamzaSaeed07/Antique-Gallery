@@ -21,6 +21,7 @@ import Sellers from '../pages/admin/Sellers'
 import Buyers from '../pages/admin/Buyers'
 import AdminDashboard from '../pages/admin/AdminDashboard';
 import Page404 from '../components/Page404'
+import AdminProtected from '../routes/AdminProtected'
 
 const Routing = () => {
   return (
@@ -30,17 +31,19 @@ const Routing = () => {
         <Route path='/' element= {<Layout><Home /></Layout> }/>
         <Route path='/products' element={<Layout><Product /></Layout>} />
         <Route path='/products/:id' element={<Layout><Detail /></Layout>} />
-        <Route path='/dashboard' element={<Dashboard />} />
         <Route element={<SellerProtected/>}>
         <Route path='/seller/add-product' element={<Sidebar><AddProduct /></Sidebar>} />
         <Route path='/seller/products' element={<Sidebar><SellerProducts /></Sidebar>} />
         </Route>
+        <Route element={<AdminProtected/>}>
+        <Route path='/dashboard' element={<Dashboard />} />
         <Route path='/admin/orders' element={<AdminDashboard><Orders/></AdminDashboard>} />
         <Route path='/admin/category' element={<AdminDashboard><Category/></AdminDashboard>} />
         <Route path='/admin/products' element={<AdminDashboard><Products/></AdminDashboard>} />
         <Route path='/admin/bidding' element={<AdminDashboard><Biding/></AdminDashboard>} />
         <Route path='/admin/sellers' element={<AdminDashboard><Sellers/></AdminDashboard>} />
         <Route path='/admin/buyers' element={<AdminDashboard><Buyers/></AdminDashboard>} />
+        </Route>
         <Route path='/register' element={<Registeration />} />
         <Route element={<BuyerProtected/>}>
         <Route path='/buyer/orders' element={<BuyerOrders />} />

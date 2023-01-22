@@ -117,6 +117,10 @@ export const api = createApi({
       },
       providesTags: ['Buyer'],
     }),
+    getAllOrders: build.query({
+      query: () => 'View_all_order/',
+      providesTags: ['Orders'],
+    }),
     addOrder: build.mutation({
       query: data => {
         return {
@@ -179,7 +183,11 @@ export const api = createApi({
       },
       invalidatesTags: ['Bidding'],
     }),
+    getAllUsers: build.query({
+      query: () => 'User_list/',
+      providesTags: ['Admin'],
+    }),
   }),
 });
 
-export const { useGetProductsQuery, useRegisterMutation, useLoginMutation, useGetSellerProductsMutation, useGetCategoriesQuery, useAddProductMutation, useDeleteProductMutation, useEditProductMutation, useGetProudctByIdQuery, useGetBuyerOrdersMutation, useDeleteOrderMutation, useAddOrderMutation, useAddCategoryMutation, useEditCategoryMutation, useDeleteCategoryMutation, useGetBiddingListQuery, useGetBidByIdQuery, useUpdateBidMutation, useDeleteBidMutation, useCreateNewBidMutation } = api;
+export const { useGetProductsQuery, useRegisterMutation, useLoginMutation, useGetSellerProductsMutation, useGetCategoriesQuery, useAddProductMutation, useDeleteProductMutation, useEditProductMutation, useGetProudctByIdQuery, useGetBuyerOrdersMutation, useDeleteOrderMutation, useAddOrderMutation, useAddCategoryMutation, useEditCategoryMutation, useDeleteCategoryMutation, useGetBiddingListQuery, useGetBidByIdQuery, useUpdateBidMutation, useDeleteBidMutation, useCreateNewBidMutation, useGetAllOrdersQuery, useGetAllUsersQuery } = api;
