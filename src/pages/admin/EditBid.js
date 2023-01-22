@@ -32,6 +32,7 @@ const EditBid = ({ showEdit, onHide, id }) => {
       Bidding_Duration: state.Bidding_Duration,
       Bidding_status: state.Bidding_status,
     });
+    onHide();
   };
 
   useEffect(() => {
@@ -80,7 +81,7 @@ const EditBid = ({ showEdit, onHide, id }) => {
               <label htmlFor='status'>Status</label>
               <select className='form-select' name='Bidding_status' value={state.Bidding_status} id='status' aria-label='Select Category' onChange={handleChange}>
                 <option value={'Start soon'}>Start Soon</option>
-                <option value={'Started'}>Started</option>
+                <option value={'Solded'}>Solded</option>
               </select>
             </div>
           </div>

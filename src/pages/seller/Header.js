@@ -4,7 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import { BoxArrowRight } from 'react-bootstrap-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../redux/reducers/auth';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 function Header() {
   const navigate = useNavigate();
   const { activeUser } = useSelector(state => state.authReducer);
@@ -17,7 +17,11 @@ function Header() {
     <>
       <Navbar bg='light'>
         <Container>
-          <Navbar.Brand href='#home'>Welcome</Navbar.Brand>
+          <Navbar.Brand>
+            <Link to='/' style={{ color: 'black' }}>
+              Home
+            </Link>
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='ml-auto justify-content-center align-items-center' style={{ gap: '1rem' }}>

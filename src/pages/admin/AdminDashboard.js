@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import * as Icon from 'react-bootstrap-icons';
 import { useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { logout } from '../../redux/reducers/auth';
 import '../../Style/Sidebar.css';
 
@@ -10,6 +10,7 @@ const AdminDashboard = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const menuItem = [
     {
       path: '/admin/orders',
@@ -61,7 +62,14 @@ const AdminDashboard = ({ children }) => {
             </div>
           </NavLink>
         ))}
-        <Button onClick={() => dispatch(logout())} variant='outline-secondary' style={{ marginLeft: isOpen ? '10px' : '2px', marginTop: '20px' }}>
+        <Button
+          onClick={() => {
+            dispatch(logout());
+            navigate('/');
+          }}
+          variant='outline-secondary'
+          style={{ marginLeft: isOpen ? '10px' : '2px', marginTop: '20px' }}
+        >
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <span style={{ display: isOpen ? 'block' : 'none' }}>Logout</span> <Icon.BoxArrowRight />
           </div>
