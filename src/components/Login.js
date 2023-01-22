@@ -1,32 +1,67 @@
+import { useEffect, useState } from 'react';
+import { Spinner } from 'react-bootstrap';
+import toast from 'react-hot-toast';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { useLoginMutation } from '../api';
+import { setActiveUser } from '../redux/reducers/auth';
 import '../Style/Login.css';
 function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const [loginUser, response] = useLoginMutation();
+
+  const onSubmit = e => {
+    e.preventDefault();
+    loginUser({ email, password });
+  };
+
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const handleResponse = () => {
+      if (response.data && Array.isArray(response.data)) {
+        toast.success('User Login Success');
+        dispatch(setActiveUser(response.data[0]));
+        if (response.data[0].Roll === 'Buyer') {
+          navigate('/');
+        } else if (response.data[0].Roll === 'Seller') {
+          navigate('/seller/products');
+        } else if (response.data[0].Roll === 'Admin') {
+          navigate('/admin/orders');
+        }
+      } else if (response?.data?.message) {
+        return toast.error(response.data.message);
+      }
+    };
+    handleResponse();
+  }, [response]);
+
   return (
     <div>
-      <div class='login-background'>
-        <div class='login-shape'></div>
-        <div class='login-shape'></div>
+      <div className='login-background'>
+        <div className='login-shape'></div>
+        <div className='login-shape'></div>
       </div>
-      <form class='login-form'>
+      <form className='login-form' onSubmit={onSubmit}>
         <h3>Login</h3>
 
-        <label class='login-label' for='usermail'>
+        <label className='login-label' htmlFor='usermail'>
           Email
         </label>
-        <input class='login-input' type='email' placeholder='Enter your Email' id='usermail' />
+        <input className='login-input' type='email' placeholder='Enter your Email' id='usermail' required onChange={e => setEmail(e.target.value)} />
 
-        <label class='login-label' for='password'>
+        <label className='login-label' htmlFor='password'>
           Password
         </label>
-        <input class='login-input' type='password' placeholder='Password' id='password' />
+        <input className='login-input' type='password' placeholder='Password' id='password' required onChange={e => setPassword(e.target.value)} />
 
-        <button>Log In</button>
-        <div class='login-social'>
-          <span class='login-social'>
-            {' '}
+        <button className='login-button'>{response.isLoading ? <Spinner animation='border' variant='warning' /> : 'Log In'}</button>
+        <div className='login-social'>
+          <span className='login-social'>
             <p>
-              Don't have an account?
+              Don't have an account?{' '}
               <span className='register-link' onClick={() => navigate('/register')}>
                 Sign Up
               </span>

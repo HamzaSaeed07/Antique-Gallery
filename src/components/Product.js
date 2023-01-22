@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import cart from '../images/Cart-add-icon.png';
 import '../Style/Products.css';
 import { useGetProductsQuery } from '../api';
+import { useNavigate } from 'react-router-dom';
+import Loader from './Spinner';
+import Pagination from './Pagination';
+import { useSelector } from 'react-redux';
 
 function Product() {
-  const { data, isLoading } = useGetProductsQuery();
-  console.log(data);
+  const pageNumber = useSelector(state => state.globalReducer.pageNumber);
+  const { data, isLoading } = useGetProductsQuery(pageNumber);
+  const navigate = useNavigate();
+
   return (
     <div>
       <section className='col-12 row mt-5'>
@@ -19,10 +25,10 @@ function Product() {
             </h6>
           </span>
         </div>
-        {isLoading && 'Loading....'}
-        {data?.map(product => {
+        {isLoading && <Loader />}
+        {data?.results.map(product => {
           return (
-            <div className='col-lg-3 col-md-6 col-12'>
+            <div key={product.id} className='col-lg-3 col-md-6 col-12'>
               <ul className='cards'>
                 <li>
                   <div className='prod-card'>
@@ -43,7 +49,9 @@ function Product() {
                           <p className='card__description'>{product.Description}</p>
                         </div>
                         <div className='col-4'>
-                          <span>View More</span>
+                          <span style={{ cursor: 'pointer' }} onClick={() => navigate(`/products/${product.id}`)}>
+                            View More
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -53,37 +61,7 @@ function Product() {
             </div>
           );
         })}
-        <nav aria-label='Page navigation example'>
-          <ul className='pagination justify-content-center'>
-            <li className='page-item'>
-              <a className='page-link' href='#' aria-label='Previous'>
-                <span aria-hidden='true'>&laquo;</span>
-                <span className='sr-only'>Previous</span>
-              </a>
-            </li>
-            <li className='page-item'>
-              <a className='page-link' href='#'>
-                1
-              </a>
-            </li>
-            <li className='page-item'>
-              <a className='page-link' href='#'>
-                2
-              </a>
-            </li>
-            <li className='page-item'>
-              <a className='page-link' href='#'>
-                3
-              </a>
-            </li>
-            <li className='page-item'>
-              <a className='page-link' href='#' aria-label='Next'>
-                <span aria-hidden='true'>&raquo;</span>
-                <span className='sr-only'>Next</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
+        <Pagination count={data?.count} pageCurrent={pageNumber} />
       </section>
     </div>
   );
