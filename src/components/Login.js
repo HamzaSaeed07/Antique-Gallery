@@ -25,14 +25,14 @@ function Login() {
         toast.success('User Login Success');
         dispatch(setActiveUser(response.data[0]));
         if (response.data[0].Roll === 'Buyer') {
-          navigate('/products');
+          navigate('/');
         } else if (response.data[0].Roll === 'Seller') {
           navigate('/seller/products');
         } else if (response.data[0].Roll === 'Admin') {
-          navigate('/dashboard');
+          navigate('/admin/orders');
         }
-      } else if (response?.data === 'email or password is incorrect') {
-        return toast.error('Invalid Email or Password');
+      } else if (response?.data?.message) {
+        return toast.error(response.data.message);
       }
     };
     handleResponse();

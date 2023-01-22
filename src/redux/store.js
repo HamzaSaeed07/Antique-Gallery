@@ -11,7 +11,8 @@ const persistConfig = {
   version: 1,
   storage,
   // if you do not want to persist this part of the state
-  blacklist: [api.reducerPath],
+  whitelist: ['authReducer'],
+  // blacklist: [api.reducerPath, globalReducer],
 };
 const reducer = combineReducers({
   authReducer,

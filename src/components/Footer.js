@@ -6,27 +6,27 @@ import { Link } from 'react-router-dom';
 function Footer() {
   return (
     <div>
-      <section class=' cta-section mt-5 p-5'>
-        <div class='container'>
-          <div class='content'>
-            <form class='subscription'>
-              <input class='add-email m-0' type='email' placeholder='subscribe@me.now' />
-              <button class='submit-email' type='button'>
-                <span class='before-submit'>Subscribe</span>
-                <span class='after-submit'>Thank you for subscribing!</span>
+      <section className=' cta-section mt-5 p-5'>
+        <div className='container'>
+          <div className='content'>
+            <form className='subscription'>
+              <input className='add-email m-0' type='email' placeholder='subscribe@me.now' />
+              <button className='submit-email' type='button'>
+                <span className='before-submit'>Subscribe</span>
+                <span className='after-submit'>Thank you for subscribing!</span>
               </button>
             </form>
           </div>
         </div>
       </section>
 
-      <footer class='footer mt-5' role='contentinfo'>
-        <div class='container'>
-          <div class='row'>
-            <div class='col-md-4 mb-4 mb-md-0'>
-              <h2 class='section-heading2 mb-5'>Antique Gallery</h2>
+      <footer className='footer mt-5' role='contentinfo'>
+        <div className='container'>
+          <div className='row'>
+            <div className='col-md-4 mb-4 mb-md-0'>
+              <h2 className='section-heading2 mb-5'>Antique Gallery</h2>
 
-              <p class='social mt-2'>
+              <p className='social mt-2'>
                 <Link to='#'>
                   <FontAwesomeIcon icon='fa-brands fa-facebook' style={{ height: '40px' }} />
                 </Link>
@@ -41,25 +41,25 @@ function Footer() {
                 </Link>
               </p>
             </div>
-            <div class='col-md-8 row p-4'>
-              <div class='col-md-3'>
+            <div className='col-md-8 row p-4'>
+              <div className='col-md-3'>
                 <h3>Service</h3>
               </div>
-              <div class='col-md-2 '>
+              <div className='col-md-2 '>
                 <h3>Blogs</h3>
               </div>
-              <div class='col-md-2 '>
+              <div className='col-md-2 '>
                 <h3>Contact Us</h3>
               </div>
 
-              <div class='col-md-4 '>
+              <div className='col-md-4 '>
                 <h3>Location: H-10 Islamabad</h3>
               </div>
 
-              <div class='row text-center mt-5'>
-                <div class='col-md-6'>
-                  <p class='copyright'>&copy; Copyright Antique Gallery. All Rights Reserved</p>
-                  <div class='credits'>
+              <div className='row text-center mt-5'>
+                <div className='col-md-6'>
+                  <p className='copyright'>&copy; Copyright Antique Gallery. All Rights Reserved</p>
+                  <div className='credits'>
                     Designed by <Link href='#'>Hussain Sajid</Link>
                   </div>
                 </div>

@@ -7,6 +7,7 @@ import advertisment from '../images/Offer-banner.0.jpg';
 import Footer from './Footer';
 import NavBar from './NavBar';
 import Product from './Product';
+import Bid from './Bid';
 
 function Home() {
   return (
@@ -14,6 +15,7 @@ function Home() {
       <div>
         <img src={Hero} alt='Snow' style={{ width: '100%' }} />
       </div>
+      <Bid />
       <Product />
     </div>
   );

@@ -4,7 +4,7 @@ import NotAuth from '../components/NotAuth';
 
 const BuyerProtected = () => {
   const { activeUser } = useSelector(state => state.authReducer);
-  if (activeUser && activeUser.Roll === 'User') {
+  if (activeUser && activeUser.Roll === 'Buyer') {
     return <Outlet />;
   } else {
     return <NotAuth />;

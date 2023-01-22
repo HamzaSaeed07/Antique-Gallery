@@ -146,12 +146,6 @@ function Detail() {
                 </span>
               </h5>
               <h5 class='colors'>
-                Address:
-                <span class='size' data-toggle='tooltip' title='small'>
-                  {data?.address}
-                </span>
-              </h5>
-              <h5 class='colors'>
                 Date:
                 <span class='size' data-toggle='tooltip' title='small'>
                   {data?.Publish_date}
