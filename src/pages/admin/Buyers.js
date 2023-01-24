@@ -42,7 +42,7 @@ const Buyers = () => {
                       <td>{buyer.name}</td>
                       <td>{buyer.email}</td>
                       <td>{buyer.Address}</td>
-                      {/* <td>
+                      <td>
                         <div
                           onClick={() => {
                             setShowDel(true);
@@ -52,7 +52,7 @@ const Buyers = () => {
                         >
                           <Trash3 color='red' size='18' />
                         </div>
-                      </td> */}
+                      </td>
                     </tr>
                   ))}
                 </tbody>

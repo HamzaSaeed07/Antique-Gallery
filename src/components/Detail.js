@@ -50,7 +50,7 @@ function Detail() {
     </Popover>
   );
   return (
-    <div class='container'>
+    <div className='container'>
       <Modal show={show} onHide={handleClose} size='sm' style={{ textAlign: 'center' }} centered>
         <Modal.Header closeButton>
           <Modal.Title>Order Confirmation</Modal.Title>
@@ -71,29 +71,29 @@ function Detail() {
           </Button>
         </Modal.Footer>
       </Modal>
-      <div class='card'>
-        <div class='container-fliud'>
-          <div class='wrapper row'>
-            <div class='preview col-md-6'>
-              <div class='preview-pic tab-content'>
-                <div class='tab-pane active' id='pic-1'>
+      <div className='card'>
+        <div className='container-fliud'>
+          <div className='wrapper row'>
+            <div className='preview col-md-6'>
+              <div className='preview-pic tab-content'>
+                <div className='tab-pane active' id='pic-1'>
                   <img alt='product_image_1' src={data?.img} />
                 </div>
-                <div class='tab-pane' id='pic-2'>
+                <div className='tab-pane' id='pic-2'>
                   <img alt='product_image_2' src={data?.img} />
                 </div>
-                <div class='tab-pane' id='pic-3'>
+                <div className='tab-pane' id='pic-3'>
                   <img alt='product_image_3' src={data?.img} />
                 </div>
-                <div class='tab-pane' id='pic-4'>
+                <div className='tab-pane' id='pic-4'>
                   <img alt='product_image_4' src={data?.img} />
                 </div>
-                <div class='tab-pane' id='pic-5'>
+                <div className='tab-pane' id='pic-5'>
                   <img alt='product_image_5' src={data?.img} />
                 </div>
               </div>
-              <ul class='preview-thumbnail nav nav-tabs'>
-                <li class='active'>
+              <ul className='preview-thumbnail nav nav-tabs'>
+                <li className='active'>
                   <Link to='#' data-target='#pic-1' data-toggle='tab'>
                     <img alt='product_image' src={data?.img} />
                   </Link>
@@ -120,46 +120,46 @@ function Detail() {
                 </li>
               </ul>
             </div>
-            <div class='details col-md-6'>
-              <h3 class='product-title'>{data?.name}</h3>
-              <div class='rating'>
-                <div class='stars'>
-                  <span class='fa fa-star checked'></span>
-                  <span class='fa fa-star checked'></span>
-                  <span class='fa fa-star checked'></span>
-                  <span class='fa fa-star'></span>
-                  <span class='fa fa-star'></span>
+            <div className='details col-md-6'>
+              <h3 className='product-title'>{data?.name}</h3>
+              <div className='rating'>
+                <div className='stars'>
+                  <span className='fa fa-star checked'></span>
+                  <span className='fa fa-star checked'></span>
+                  <span className='fa fa-star checked'></span>
+                  <span className='fa fa-star'></span>
+                  <span className='fa fa-star'></span>
                 </div>
-                <span class='review-no'>41 reviews</span>
+                <span className='review-no'>41 reviews</span>
               </div>
-              <p class='product-description'>{data?.Description}</p>
-              <h4 class='price'>
+              <p className='product-description'>{data?.Description}</p>
+              <h4 className='price'>
                 Price: <span>${data?.price}</span>
               </h4>
-              <p class='vote'>
+              <p className='vote'>
                 <strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong>
               </p>
-              <h5 class='sizes'>
+              <h5 className='sizes'>
                 Status:
-                <span class='size' data-toggle='tooltip' title='small'>
+                <span className='size' data-toggle='tooltip' title='small'>
                   {data?.status}
                 </span>
               </h5>
-              <h5 class='colors'>
+              <h5 className='colors'>
                 Date:
-                <span class='size' data-toggle='tooltip' title='small'>
+                <span className='size' data-toggle='tooltip' title='small'>
                   {data?.Publish_date}
                 </span>
               </h5>
 
-              <div class='action'>
+              <div className='action'>
                 {activeUser ? (
-                  <button class='add-to-cart btn btn-default' type='button' onClick={handleBuy}>
+                  <button className='add-to-cart btn btn-default' type='button' onClick={handleBuy}>
                     BUY NOW
                   </button>
                 ) : (
                   <OverlayTrigger trigger='click' placement='right' overlay={popover}>
-                    <button class='add-to-cart btn btn-default' type='button'>
+                    <button className='add-to-cart btn btn-default' type='button'>
                       BUY NOW
                     </button>
                   </OverlayTrigger>

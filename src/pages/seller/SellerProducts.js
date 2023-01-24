@@ -13,11 +13,11 @@ const SellerProducts = () => {
   const { activeUser } = useSelector(state => state.authReducer);
   const [getProducts, response] = useGetSellerProductsMutation();
   const [deleteProduct, { isSuccess }] = useDeleteProductMutation();
-  const { data } = useGetCategoriesQuery();
+  const { data, isLoading } = useGetCategoriesQuery();
 
   const getCategoryName = id => {
     const find = data?.results?.find(cat => cat.id === id);
-    return find.category_name;
+    return find?.category_name;
   };
 
   useEffect(() => {
@@ -54,7 +54,7 @@ const SellerProducts = () => {
                     <div className='mt-1 mb-1 spec-1'>
                       <span>Category: </span>
                       <span className='dot'></span>
-                      <span>{getCategoryName(product.Category)}</span>
+                      <span>{isLoading ? 'Loading...' : getCategoryName(product.Category)}</span>
                     </div>
 
                     <div className='mt-1 mb-1 spec-1'>

@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import toast from 'react-hot-toast';
-import { useCreateNewBidMutation } from '../../api';
+import { useCreateNewBidMutation, useGetAllProductsQuery } from '../../api';
 
 const AddBid = ({ showAdd, setShowAdd }) => {
+  const { data, isLoading } = useGetAllProductsQuery();
+  console.log(data);
   const [addBid, response] = useCreateNewBidMutation();
   const [state, setState] = useState({
-    product: 1,
+    product: data && data?.results[0].id,
     Bidding_date: '',
     Bidding_Start: '',
     Bidding_Duration: 30,
@@ -19,7 +21,7 @@ const AddBid = ({ showAdd, setShowAdd }) => {
     addBid({
       product: state.product,
       Bidding_date: state.Bidding_date,
-      Bidding_Start: state.Bidding_Start,
+      Bidding_Start: state.Bidding_Start + ':00',
       Bidding_Duration: state.Bidding_Duration,
     });
     setShowAdd(false);
@@ -44,7 +46,15 @@ const AddBid = ({ showAdd, setShowAdd }) => {
           <div className='form-row'>
             <div className='col-md-8 mb-3'>
               <label htmlFor='title'>Product</label>
-              <input type='number' value={state.product} className='form-control ' name='product' id='prdocut' onChange={handleChange} required />
+              <select className='form-select' name='product' id='prdocut' onChange={handleChange} required>
+                {!isLoading &&
+                  data?.results?.map(product => (
+                    <option key={product.id} value={product.id}>
+                      {product.name}
+                    </option>
+                  ))}
+              </select>
+              {/* <input type='number' value={state.product} className='form-control ' name='product' id='prdocut' onChange={handleChange} required /> */}
             </div>
           </div>
           <div className='form-row'>

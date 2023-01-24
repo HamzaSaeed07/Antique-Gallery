@@ -31,6 +31,10 @@ export const api = createApi({
       query: page => `Products/?page=${page}`,
       providesTags: ['Products'],
     }),
+    getAllProducts: build.query({
+      query: page => 'Products/',
+      providesTags: ['Products'],
+    }),
     getProudctById: build.query({
       query: id => `Products/${id}/`,
       providesTags: ['Products'],
@@ -141,6 +145,16 @@ export const api = createApi({
       },
       invalidatesTags: ['Orders'],
     }),
+    updateOrder: build.mutation({
+      query: ({ id, ...data }) => {
+        return {
+          url: `View_all_order/${id}/`,
+          method: 'PATCH',
+          body: data,
+        };
+      },
+      invalidatesTags: ['Orders'],
+    }),
     getBiddingList: build.query({
       query: () => 'Product_Bidding/',
       providesTags: ['Bidding'],
@@ -199,4 +213,4 @@ export const api = createApi({
   }),
 });
 
-export const { useGetProductsQuery, useRegisterMutation, useLoginMutation, useGetSellerProductsMutation, useGetCategoriesQuery, useAddProductMutation, useDeleteProductMutation, useEditProductMutation, useGetProudctByIdQuery, useGetBuyerOrdersMutation, useDeleteOrderMutation, useAddOrderMutation, useAddCategoryMutation, useEditCategoryMutation, useDeleteCategoryMutation, useGetBiddingListQuery, useGetBidByIdQuery, useUpdateBidMutation, useDeleteBidMutation, useCreateNewBidMutation, useGetAllOrdersQuery, useGetAllUsersQuery, useDeleteUserMutation } = api;
+export const { useGetProductsQuery, useRegisterMutation, useLoginMutation, useGetSellerProductsMutation, useGetCategoriesQuery, useAddProductMutation, useDeleteProductMutation, useEditProductMutation, useGetProudctByIdQuery, useGetBuyerOrdersMutation, useDeleteOrderMutation, useAddOrderMutation, useAddCategoryMutation, useEditCategoryMutation, useDeleteCategoryMutation, useGetBiddingListQuery, useGetBidByIdQuery, useUpdateBidMutation, useDeleteBidMutation, useCreateNewBidMutation, useGetAllOrdersQuery, useGetAllUsersQuery, useDeleteUserMutation, useUpdateOrderMutation, useGetAllProductsQuery } = api;

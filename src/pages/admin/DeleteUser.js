@@ -12,7 +12,7 @@ const DeleteBid = ({ showDel, onHide, id }) => {
   useEffect(() => {
     const handleResponse = () => {
       if (response.isSuccess && response.data) {
-        toast.success('Bid Deleted');
+        toast.success('User Deleted');
       }
     };
     handleResponse();
