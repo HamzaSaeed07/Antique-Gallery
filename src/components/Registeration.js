@@ -19,14 +19,14 @@ function Registeration() {
   const [registerUser, response] = useRegisterMutation();
   const onSubmit = e => {
     e.preventDefault();
-    // const data = new FormData();
-    // data.append('name', name);
-    // data.append('email', email);
-    // data.append('img', img);
-    // data.append('password', password);
-    // data.append('Roll', capitalizeFirstLetter(role));
-    // data.append('Address', address);
-    // registerUser(data);
+    const data = new FormData();
+    data.append('name', name);
+    data.append('email', email);
+    data.append('img', img);
+    data.append('password', password);
+    data.append('Roll', capitalizeFirstLetter(role));
+    data.append('Address', address);
+    registerUser(data);
   };
 
   const navigate = useNavigate();
