@@ -17,6 +17,11 @@ const Sidebar = ({ children }) => {
       name: 'Products List',
       icon: <Icon.Cart />,
     },
+    {
+      path: '/seller/category',
+      name: 'Category',
+      icon: <Icon.Stack />,
+    },
   ];
   return (
     <div className='s-container'>

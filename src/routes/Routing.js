@@ -31,10 +31,13 @@ const Routing = () => {
         <Route path='/' element= {<Layout><Home /></Layout> }/>
         <Route path='/products' element={<Layout><Product /></Layout>} />
         <Route path='/products/:id' element={<Layout><Detail /></Layout>} />
+
         <Route element={<SellerProtected/>}>
         <Route path='/seller/add-product' element={<Sidebar><AddProduct /></Sidebar>} />
         <Route path='/seller/products' element={<Sidebar><SellerProducts /></Sidebar>} />
+        <Route path='/seller/category' element={<Sidebar><Category/></Sidebar>} />
         </Route>
+        
         <Route element={<AdminProtected/>}>
         <Route path='/dashboard' element={<Dashboard />} />
         <Route path='/admin/orders' element={<AdminDashboard><Orders/></AdminDashboard>} />
