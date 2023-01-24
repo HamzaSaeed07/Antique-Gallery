@@ -1,12 +1,12 @@
 import '../Style/NavBar.css';
-import React, { useState } from 'react';
+import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../redux/reducers/auth';
-import { Cart, CartFill } from 'react-bootstrap-icons';
+import { Cart } from 'react-bootstrap-icons';
 
 function NavBar() {
   const user = useSelector(state => state.authReducer.activeUser);

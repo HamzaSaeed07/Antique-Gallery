@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Modal, Table } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
-import { Trash } from 'react-bootstrap-icons';
-import { useDeleteOrderMutation, useGetBuyerOrdersMutation } from '../../api';
+import { useDeleteOrderMutation, useGetBuyerOrdersMutation, useUpdateOrderMutation } from '../../api';
 import NavBar from '../../components/NavBar';
 import toast from 'react-hot-toast';
 import '../../App.css';
@@ -12,9 +11,9 @@ const BuyerOrders = () => {
   const [modalShow, setModalShow] = useState(false);
   const { activeUser } = useSelector(state => state.authReducer);
   const [getOrders, response] = useGetBuyerOrdersMutation();
-  const [deleteOrder, { isSuccess, isLoading }] = useDeleteOrderMutation();
-  const handleDelete = id => {
-    deleteOrder(id);
+  const [cancelOrder, { isSuccess }] = useUpdateOrderMutation();
+  const handleCancel = id => {
+    cancelOrder({ id, is_Cancel: true });
     setModalShow(false);
   };
   useEffect(() => {
@@ -22,7 +21,7 @@ const BuyerOrders = () => {
   }, []);
   useEffect(() => {
     if (isSuccess) {
-      toast.success('Product Deleted');
+      toast.success('Order Canceled');
       getOrders(activeUser?.id);
     }
   }, [isSuccess]);
@@ -62,8 +61,8 @@ const BuyerOrders = () => {
                       <td>{order.status}</td>
                       <td>
                         <div onClick={() => setModalShow(true)}>
-                          <Button variant='danger' size='sm' disabled={order.status === 'deliverd'}>
-                            Cancel
+                          <Button variant='danger' size='sm' disabled={order.status === 'deliverd' || order.is_Cancel}>
+                            {order.is_Cancel ? 'Cancelled' : 'Cancel'}
                           </Button>
                         </div>
                         <Modal show={modalShow} onHide={() => setModalShow(false)} size='md' aria-labelledby='contained-modal-title-vcenter' centered>
@@ -74,7 +73,7 @@ const BuyerOrders = () => {
                             <div className='alert alert-info'>Are you sure want to cancel the order?</div>
                           </Modal.Body>
                           <Modal.Footer>
-                            <Button variant='danger' onClick={() => handleDelete(order.id)}>
+                            <Button variant='danger' onClick={() => handleCancel(order.id)}>
                               Confirm
                             </Button>
                           </Modal.Footer>

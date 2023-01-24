@@ -5,7 +5,7 @@ import Countdown from 'react-countdown';
 import { useDispatch, useSelector } from 'react-redux';
 import toast from 'react-hot-toast';
 import { setBids, setCurrentBid, updateCurrentBid } from '../redux/reducers/global';
-import { Button, OverlayTrigger, Popover } from 'react-bootstrap';
+import { Button, OverlayTrigger, Popover, Table } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
 const renderer = ({ hours, minutes, seconds, completed, props }) => {
@@ -16,7 +16,7 @@ const renderer = ({ hours, minutes, seconds, completed, props }) => {
         <img src={props.img} width={400} height={400} alt='product_image' style={{ borderRadius: '30px' }} />
         <button className='alert alert-danger mt-2'>Auction is ending soon...</button>
       </div>
-      <div className='col-6 card  ' style={{ maxHeight: '25rem' }}>
+      <div className='col-6 card  ' style={{ maxHeight: '35rem' }}>
         <div className='row '>
           <div>
             <h4>Time Remaining</h4>
@@ -58,12 +58,12 @@ const renderer = ({ hours, minutes, seconds, completed, props }) => {
               <h5>Enter Your Bid Price</h5>
               <input className='form-control' type='number' value={props.userInput} onChange={e => props.setUserInput(e.target.value)} />
               {props.activeUser ? (
-                <button class='button btn btn-warning mt-2' type='button' onClick={() => props.updatePrice()}>
+                <button className='button btn btn-warning mt-2' type='button' onClick={() => props.updatePrice()}>
                   BID NOW
                 </button>
               ) : (
                 <OverlayTrigger trigger='click' placement='right' overlay={props.popover}>
-                  <button class='button btn btn-warning mt-2' type='button'>
+                  <button className='button btn btn-warning mt-2' type='button'>
                     BID NOW
                   </button>
                 </OverlayTrigger>
@@ -85,6 +85,8 @@ function Bid() {
   const [userInput, setUserInput] = useState(0);
 
   let date = new Date();
+  let todayDate = date.toISOString().slice(0, 10);
+
   let hours = date.getHours();
   let minutes = date.getMinutes();
   if (minutes < 10) {
@@ -152,6 +154,8 @@ function Bid() {
       </Popover.Body>
     </Popover>
   );
+  const todayBids = data?.filter(bid => bid.Bidding_date == todayDate);
+
   return (
     <>
       {currentCountdown ? (
@@ -161,6 +165,25 @@ function Bid() {
           <div className=' col-6 text-center'>
             <h1>Stay Tuned for Bidding</h1>
             <p>Bidding will start soon</p>
+            {todayBids && <h5>Today Auctions</h5>}
+            {todayBids && (
+              <Table>
+                <thead>
+                  <tr>
+                    <th>Bid Start Time</th>
+                    <th>Duration</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {todayBids.map(bid => (
+                    <tr>
+                      <td>{bid.Bidding_Start}</td>
+                      <td>{bid.Bidding_Duration} Minutes</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+            )}
           </div>
           <div className='col-6 card'>
             <div className='row justify-content-center'>

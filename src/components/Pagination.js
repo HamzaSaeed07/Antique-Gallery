@@ -1,7 +1,9 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { changeCurrentPage } from '../redux/reducers/global';
 
 const Pagination = ({ count, pageCurrent }) => {
+  const pageNumber = useSelector(state => state.globalReducer.pageNumber);
+
   const pages = Array.from({ length: Math.ceil(count / 8) }, (_, i) => i + 1);
   const dispatch = useDispatch();
 
@@ -33,7 +35,7 @@ const Pagination = ({ count, pageCurrent }) => {
 
         {pages.map(page => (
           <li key={page} className='page-item'>
-            <button className='page-link' onClick={() => handleChangeCurrentPage(page)}>
+            <button className='page-link' style={{ backgroundColor: page === pageNumber && 'lightblue', fontWeight: 'normal' }} onClick={() => handleChangeCurrentPage(page)}>
               {page}
             </button>
           </li>
