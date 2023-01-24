@@ -101,7 +101,6 @@ function Bid() {
   const [updateBid, response] = useUpdateBidMutation();
   const { data: bidById, refetch: refetchById } = useGetBidByIdQuery(currentBid?.id);
   const { data: productDetails, isSuccess: productDetailsSucces } = useGetProudctByIdQuery(bidById?.product);
-  console.log(productDetails);
   useEffect(() => {
     if (!response.isLoading && response.isSuccess) {
       dispatch(updateCurrentBid(response.data));
