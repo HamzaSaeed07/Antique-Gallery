@@ -21,7 +21,7 @@ function Detail() {
   };
   const todayDate = new Date().toISOString();
   const handleOrder = () => {
-    if (activeUser.Roll === 'Buyer') {
+    if (activeUser.Roll === 'Buyer' || activeUser.Roll === 'Seller') {
       makeOrder({ Adress: activeUser?.Address, product_id: data?.id, buyer_id: activeUser.id, order_date: todayDate });
     }
     handleClose();

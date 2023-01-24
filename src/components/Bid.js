@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useGetBidByIdQuery, useGetBiddingListQuery, useUpdateBidMutation } from '../api';
+import { useGetBidByIdQuery, useGetBiddingListQuery, useGetProudctByIdQuery, useUpdateBidMutation } from '../api';
 import '../Style/Bid.css';
 import Countdown from 'react-countdown';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,7 +13,7 @@ const renderer = ({ hours, minutes, seconds, completed, props }) => {
     <div className='split row  mt-5 p-5' style={{ background: 'antiquewhite' }}>
       <div className=' col-6 text-center'>
         <h1>Hurry up to catch the ultimate sale on Bid</h1>
-        <img src='' width={400} height={400} alt='product_image' style={{ borderRadius: '30px' }} />
+        <img src={props.img} width={400} height={400} alt='product_image' style={{ borderRadius: '30px' }} />
         <button className='alert alert-danger mt-2'>Auction is ending soon...</button>
       </div>
       <div className='col-6 card  ' style={{ maxHeight: '25rem' }}>
@@ -51,6 +51,8 @@ const renderer = ({ hours, minutes, seconds, completed, props }) => {
         <div className='row '>
           {!completed && (
             <div className='col-6 mt-2'>
+              <h6>Product Name:</h6>
+              <p>{props.name}</p>
               <h6>Last Bid Price:</h6>
               <p>{props.product.Bidding_price}$</p>
               <h5>Enter Your Bid Price</h5>
@@ -66,9 +68,6 @@ const renderer = ({ hours, minutes, seconds, completed, props }) => {
                   </button>
                 </OverlayTrigger>
               )}
-              {/* <button className='button btn btn-success mt-2' onClick={() => props.updatePrice()}>
-                Bid
-              </button> */}
             </div>
           )}
         </div>
@@ -79,7 +78,7 @@ const renderer = ({ hours, minutes, seconds, completed, props }) => {
 
 function Bid() {
   const dispatch = useDispatch();
-  const { data, isLoading, isSuccess, refetch } = useGetBiddingListQuery();
+  const { data, isLoading, isSuccess } = useGetBiddingListQuery();
   const { bids, currentBid, currentCountdown } = useSelector(state => state.globalReducer);
   const { activeUser } = useSelector(state => state.authReducer);
   const [userInput, setUserInput] = useState(0);
@@ -100,8 +99,9 @@ function Bid() {
   }, [isLoading, isSuccess]);
 
   const [updateBid, response] = useUpdateBidMutation();
-  const { data: bidById, refetch: refetchById } = useGetBidByIdQuery(currentBid.id);
-
+  const { data: bidById, refetch: refetchById } = useGetBidByIdQuery(currentBid?.id);
+  const { data: productDetails, isSuccess: productDetailsSucces } = useGetProudctByIdQuery(bidById?.product);
+  console.log(productDetails);
   useEffect(() => {
     if (!response.isLoading && response.isSuccess) {
       dispatch(updateCurrentBid(response.data));
@@ -119,6 +119,7 @@ function Bid() {
         id: currentBid.id,
         Bidding_price: userInput,
         Buyer: activeUser.id,
+        Bidding_status: 'Solded',
       });
       toast.success('Amount Added');
       setUserInput(0);
@@ -151,7 +152,7 @@ function Bid() {
   return (
     <>
       {currentCountdown ? (
-        <Countdown date={currentCountdown} onComplete={handleEnd} userInput={userInput} renderer={renderer} product={currentBid} setUserInput={setUserInput} updatePrice={updatePrice} activeUser={activeUser} popover={popover} />
+        <Countdown date={currentCountdown} name={productDetails?.name} img={productDetails?.img} onComplete={handleEnd} userInput={userInput} renderer={renderer} product={currentBid} setUserInput={setUserInput} updatePrice={updatePrice} activeUser={activeUser} popover={popover} />
       ) : (
         <div className='split row mt-5 p-5' style={{ background: 'antiquewhite' }}>
           <div className=' col-6 text-center'>
