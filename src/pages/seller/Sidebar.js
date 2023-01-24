@@ -18,6 +18,11 @@ const Sidebar = ({ children }) => {
       icon: <Icon.Cart />,
     },
     {
+      path: '/seller/orders',
+      name: 'Orders List',
+      icon: <Icon.Basket3 />,
+    },
+    {
       path: '/seller/category',
       name: 'Category',
       icon: <Icon.Stack />,

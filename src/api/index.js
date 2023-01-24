@@ -32,7 +32,7 @@ export const api = createApi({
       providesTags: ['Products'],
     }),
     getAllProducts: build.query({
-      query: page => 'Products/',
+      query: page => 'AllProducts/',
       providesTags: ['Products'],
     }),
     getProudctById: build.query({
@@ -125,6 +125,16 @@ export const api = createApi({
       query: () => 'View_all_order/',
       providesTags: ['Orders'],
     }),
+    getSellerOrders: build.mutation({
+      query: id => {
+        return {
+          url: 'seller_order/',
+          method: 'POST',
+          body: { seller_id: id },
+        };
+      },
+      providesTags: ['Orders'],
+    }),
     addOrder: build.mutation({
       query: data => {
         return {
@@ -213,4 +223,4 @@ export const api = createApi({
   }),
 });
 
-export const { useGetProductsQuery, useRegisterMutation, useLoginMutation, useGetSellerProductsMutation, useGetCategoriesQuery, useAddProductMutation, useDeleteProductMutation, useEditProductMutation, useGetProudctByIdQuery, useGetBuyerOrdersMutation, useDeleteOrderMutation, useAddOrderMutation, useAddCategoryMutation, useEditCategoryMutation, useDeleteCategoryMutation, useGetBiddingListQuery, useGetBidByIdQuery, useUpdateBidMutation, useDeleteBidMutation, useCreateNewBidMutation, useGetAllOrdersQuery, useGetAllUsersQuery, useDeleteUserMutation, useUpdateOrderMutation, useGetAllProductsQuery } = api;
+export const { useGetProductsQuery, useRegisterMutation, useLoginMutation, useGetSellerProductsMutation, useGetCategoriesQuery, useAddProductMutation, useDeleteProductMutation, useEditProductMutation, useGetProudctByIdQuery, useGetBuyerOrdersMutation, useDeleteOrderMutation, useAddOrderMutation, useAddCategoryMutation, useEditCategoryMutation, useDeleteCategoryMutation, useGetBiddingListQuery, useGetBidByIdQuery, useUpdateBidMutation, useDeleteBidMutation, useCreateNewBidMutation, useGetAllOrdersQuery, useGetAllUsersQuery, useDeleteUserMutation, useUpdateOrderMutation, useGetAllProductsQuery, useGetSellerOrdersMutation } = api;

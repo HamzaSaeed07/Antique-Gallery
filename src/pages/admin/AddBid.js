@@ -5,10 +5,9 @@ import { useCreateNewBidMutation, useGetAllProductsQuery } from '../../api';
 
 const AddBid = ({ showAdd, setShowAdd }) => {
   const { data, isLoading } = useGetAllProductsQuery();
-  console.log(data);
   const [addBid, response] = useCreateNewBidMutation();
   const [state, setState] = useState({
-    product: data && data?.results[0].id,
+    product: data && data[0].id,
     Bidding_date: '',
     Bidding_Start: '',
     Bidding_Duration: 30,
@@ -48,7 +47,7 @@ const AddBid = ({ showAdd, setShowAdd }) => {
               <label htmlFor='title'>Product</label>
               <select className='form-select' name='product' id='prdocut' onChange={handleChange} required>
                 {!isLoading &&
-                  data?.results?.map(product => (
+                  data?.map(product => (
                     <option key={product.id} value={product.id}>
                       {product.name}
                     </option>

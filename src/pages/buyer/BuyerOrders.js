@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Modal, Table } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
-import { useDeleteOrderMutation, useGetBuyerOrdersMutation, useUpdateOrderMutation } from '../../api';
+import { useGetBuyerOrdersMutation, useUpdateOrderMutation } from '../../api';
 import NavBar from '../../components/NavBar';
 import toast from 'react-hot-toast';
 import '../../App.css';
@@ -60,10 +60,18 @@ const BuyerOrders = () => {
                       <td>{order.order_date.slice(0, 10)}</td>
                       <td>{order.status}</td>
                       <td>
-                        <div onClick={() => setModalShow(true)}>
-                          <Button variant='danger' size='sm' disabled={order.status === 'deliverd' || order.is_Cancel}>
+                        <div
+                          onClick={() => {
+                            if (order.is_Cancel) {
+                              toast.error('Already Cancelled');
+                            } else {
+                              setModalShow(true);
+                            }
+                          }}
+                        >
+                          <button className='btn btn-danger btn-sm' disabled={order.is_Cancel}>
                             {order.is_Cancel ? 'Cancelled' : 'Cancel'}
-                          </Button>
+                          </button>
                         </div>
                         <Modal show={modalShow} onHide={() => setModalShow(false)} size='md' aria-labelledby='contained-modal-title-vcenter' centered>
                           <Modal.Header closeButton>
