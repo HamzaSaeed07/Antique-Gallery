@@ -62,21 +62,20 @@ const BuyerOrders = () => {
                       <td>{order.status}</td>
                       <td>
                         <div onClick={() => setModalShow(true)}>
-                          <Trash color='red' size={18} style={{ cursor: 'pointer' }} />
+                          <Button variant='danger' size='sm' disabled={order.status === 'deliverd'}>
+                            Cancel
+                          </Button>
                         </div>
                         <Modal show={modalShow} onHide={() => setModalShow(false)} size='md' aria-labelledby='contained-modal-title-vcenter' centered>
                           <Modal.Header closeButton>
-                            <Modal.Title id='contained-modal-title-vcenter'>Delete Confirmation</Modal.Title>
+                            <Modal.Title id='contained-modal-title-vcenter'>Cancel Order Confirmation</Modal.Title>
                           </Modal.Header>
                           <Modal.Body>
-                            <div className='alert alert-danger'>Are you sure want to delete?</div>
+                            <div className='alert alert-info'>Are you sure want to cancel the order?</div>
                           </Modal.Body>
                           <Modal.Footer>
-                            <Button variant='default' onClick={() => setModalShow(false)}>
-                              Cancel
-                            </Button>
                             <Button variant='danger' onClick={() => handleDelete(order.id)}>
-                              Delete
+                              Confirm
                             </Button>
                           </Modal.Footer>
                         </Modal>
