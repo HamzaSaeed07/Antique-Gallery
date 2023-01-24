@@ -115,7 +115,7 @@ export const api = createApi({
           body: { customer: id },
         };
       },
-      providesTags: ['Buyer'],
+      providesTags: ['Orders'],
     }),
     getAllOrders: build.query({
       query: () => 'View_all_order/',
@@ -129,7 +129,7 @@ export const api = createApi({
           body: data,
         };
       },
-      invalidatesTags: ['Buyer'],
+      invalidatesTags: ['Orders'],
     }),
     deleteOrder: build.mutation({
       query: id => {
@@ -139,7 +139,7 @@ export const api = createApi({
           body: { id },
         };
       },
-      invalidatesTags: ['Buyer'],
+      invalidatesTags: ['Orders'],
     }),
     getBiddingList: build.query({
       query: () => 'Product_Bidding/',
@@ -187,7 +187,16 @@ export const api = createApi({
       query: () => 'User_list/',
       providesTags: ['Admin'],
     }),
+    deleteUser: build.mutation({
+      query: id => {
+        return {
+          url: `User_list/${id}/`,
+          method: 'DELETE',
+        };
+      },
+      invalidatesTags: ['Admin'],
+    }),
   }),
 });
 
-export const { useGetProductsQuery, useRegisterMutation, useLoginMutation, useGetSellerProductsMutation, useGetCategoriesQuery, useAddProductMutation, useDeleteProductMutation, useEditProductMutation, useGetProudctByIdQuery, useGetBuyerOrdersMutation, useDeleteOrderMutation, useAddOrderMutation, useAddCategoryMutation, useEditCategoryMutation, useDeleteCategoryMutation, useGetBiddingListQuery, useGetBidByIdQuery, useUpdateBidMutation, useDeleteBidMutation, useCreateNewBidMutation, useGetAllOrdersQuery, useGetAllUsersQuery } = api;
+export const { useGetProductsQuery, useRegisterMutation, useLoginMutation, useGetSellerProductsMutation, useGetCategoriesQuery, useAddProductMutation, useDeleteProductMutation, useEditProductMutation, useGetProudctByIdQuery, useGetBuyerOrdersMutation, useDeleteOrderMutation, useAddOrderMutation, useAddCategoryMutation, useEditCategoryMutation, useDeleteCategoryMutation, useGetBiddingListQuery, useGetBidByIdQuery, useUpdateBidMutation, useDeleteBidMutation, useCreateNewBidMutation, useGetAllOrdersQuery, useGetAllUsersQuery, useDeleteUserMutation } = api;

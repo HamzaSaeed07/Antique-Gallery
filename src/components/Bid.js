@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useGetBidByIdQuery, useGetBiddingListQuery, useGetProudctByIdQuery, useUpdateBidMutation } from '../api';
+import { useAddOrderMutation, useGetBidByIdQuery, useGetBiddingListQuery, useGetProudctByIdQuery, useUpdateBidMutation } from '../api';
 import '../Style/Bid.css';
 import Countdown from 'react-countdown';
 import { useDispatch, useSelector } from 'react-redux';
@@ -79,6 +79,7 @@ const renderer = ({ hours, minutes, seconds, completed, props }) => {
 function Bid() {
   const dispatch = useDispatch();
   const { data, isLoading, isSuccess } = useGetBiddingListQuery();
+  const [makeOrder] = useAddOrderMutation();
   const { bids, currentBid, currentCountdown } = useSelector(state => state.globalReducer);
   const { activeUser } = useSelector(state => state.authReducer);
   const [userInput, setUserInput] = useState(0);
@@ -126,11 +127,14 @@ function Bid() {
   }
 
   function handleEnd() {
+    toast.success('Auction Ended');
     updateBid({
       id: currentBid.id,
       Bidding_status: 'Solded',
     });
     dispatch(updateCurrentBid({}));
+    refetchById();
+    makeOrder({ Adress: 'xyz', product_id: bidById.product, buyer_id: bidById.Buyer, order_date: date.toISOString().slice(0, 10) });
   }
   const navigate = useNavigate();
   const popover = (

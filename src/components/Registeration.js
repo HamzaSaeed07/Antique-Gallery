@@ -19,14 +19,14 @@ function Registeration() {
   const [registerUser, response] = useRegisterMutation();
   const onSubmit = e => {
     e.preventDefault();
-    const data = new FormData();
-    data.append('name', name);
-    data.append('email', email);
-    data.append('img', img);
-    data.append('password', password);
-    data.append('Roll', capitalizeFirstLetter(role));
-    data.append('Address', address);
-    registerUser(data);
+    // const data = new FormData();
+    // data.append('name', name);
+    // data.append('email', email);
+    // data.append('img', img);
+    // data.append('password', password);
+    // data.append('Roll', capitalizeFirstLetter(role));
+    // data.append('Address', address);
+    // registerUser(data);
   };
 
   const navigate = useNavigate();
@@ -52,7 +52,7 @@ function Registeration() {
         <label className='reg-form-label' htmlFor='username'>
           Name
         </label>
-        <input className='reg-form-input' type='text' placeholder='Enter Name' id='username' required onChange={e => setName(e.target.value)} />
+        <input className='reg-form-input' type='text' pattern='^[^\d]+$' title='Name should not contain numbers' placeholder='Enter Name' id='username' required onChange={e => setName(e.target.value)} />
         <label className='reg-form-label' htmlFor='username'>
           Email
         </label>
@@ -67,11 +67,11 @@ function Registeration() {
         <label className='reg-form-label' htmlFor='adress'>
           Adress
         </label>
-        <input className='reg-form-input' type='adress' placeholder='Adress' id='adress' onChange={e => setAddress(e.target.value)} />
+        <input className='reg-form-input' required type='adress' placeholder='Adress' id='adress' onChange={e => setAddress(e.target.value)} />
         <label className='reg-form-label' htmlFor='password'>
           Password
         </label>
-        <input className='reg-form-input' type='password' placeholder='Password' id='password' required onChange={e => setPasswrod(e.target.value)} />
+        <input className='reg-form-input' type='password' placeholder='Password' pattern='(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}' title='Must contain at least one number and one uppercase and lowercase letter, and at least 6 or more characters' id='password' required onChange={e => setPasswrod(e.target.value)} />
         <label className='reg-form-label' htmlFor='image'>
           Image
         </label>
