@@ -13,7 +13,7 @@ const renderer = ({ hours, minutes, seconds, completed, props }) => {
     <div className='split row  mt-5 p-5' style={{ background: 'antiquewhite' }}>
       <div className=' col-6 text-center'>
         <h1>Hurry up to catch the ultimate sale on Bid</h1>
-        <img src={props.img} width={400} height={400} alt='product_image' style={{ borderRadius: '30px' }} />
+        {props.img && <img src={props.img} width={400} height={400} alt='Image_Loading' style={{ borderRadius: '30px' }} />}
       </div>
       <div className='col-6 card  ' style={{ maxHeight: '35rem' }}>
         <div className='row '>
@@ -82,6 +82,7 @@ function Bid() {
   const { bids, currentBid, currentCountdown } = useSelector(state => state.globalReducer);
   const { activeUser } = useSelector(state => state.authReducer);
   const [userInput, setUserInput] = useState(0);
+  const [img, setImg] = useState();
 
   let date = new Date();
   let todayDate = date.toISOString().slice(0, 10);
@@ -102,13 +103,19 @@ function Bid() {
 
   const [updateBid, response] = useUpdateBidMutation();
   const { data: bidById, refetch: refetchById, isLoading: refetchLoading } = useGetBidByIdQuery(currentBid?.id);
-  const { data: productDetails, isSuccess: productDetailsSucces } = useGetProudctByIdQuery(bidById?.product);
+  let { data: productDetails, isSuccess: productDetailsSucces } = useGetProudctByIdQuery(bidById?.product);
 
   useEffect(() => {
     if (!response.isLoading && response.isSuccess) {
       dispatch(updateCurrentBid(response.data));
     }
   }, [response]);
+
+  useEffect(() => {
+    if (productDetailsSucces) {
+      setImg(productDetails.img);
+    }
+  }, [productDetailsSucces]);
 
   function updatePrice() {
     refetchById().then(res => {
@@ -138,8 +145,12 @@ function Bid() {
       Bidding_status: 'Solded',
     });
     dispatch(updateCurrentBid({}));
-    refetchById();
-    makeOrder({ Adress: 'xyz', product_id: bidById.product, buyer_id: bidById.Buyer, order_date: date.toISOString().slice(0, 10) });
+    refetchById().then(res => {
+      console.log(res);
+      if (res.data.Buyer) {
+        makeOrder({ Adress: 'xyz', product_id: bidById.product, buyer_id: bidById.Buyer, order_date: date.toISOString().slice(0, 10) });
+      }
+    });
     productDetails = {};
   }
   const navigate = useNavigate();
@@ -162,7 +173,7 @@ function Bid() {
   return (
     <>
       {currentCountdown ? (
-        <Countdown date={currentCountdown} name={productDetails?.name} img={productDetails?.img} onComplete={handleEnd} userInput={userInput} renderer={renderer} product={currentBid} setUserInput={setUserInput} updatePrice={updatePrice} activeUser={activeUser} popover={popover} />
+        <Countdown date={currentCountdown} name={productDetails?.name} img={img} onComplete={handleEnd} userInput={userInput} renderer={renderer} product={currentBid} setUserInput={setUserInput} updatePrice={updatePrice} activeUser={activeUser} popover={popover} />
       ) : (
         <div className='split row mt-5 p-5' style={{ background: 'antiquewhite' }}>
           <div className=' col-6 text-center'>
