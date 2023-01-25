@@ -14,7 +14,6 @@ const renderer = ({ hours, minutes, seconds, completed, props }) => {
       <div className=' col-6 text-center'>
         <h1>Hurry up to catch the ultimate sale on Bid</h1>
         <img src={props.img} width={400} height={400} alt='product_image' style={{ borderRadius: '30px' }} />
-        <button className='alert alert-danger mt-2'>Auction is ending soon...</button>
       </div>
       <div className='col-6 card  ' style={{ maxHeight: '35rem' }}>
         <div className='row '>
@@ -102,8 +101,9 @@ function Bid() {
   }, [isLoading, isSuccess]);
 
   const [updateBid, response] = useUpdateBidMutation();
-  const { data: bidById, refetch: refetchById } = useGetBidByIdQuery(currentBid?.id);
+  const { data: bidById, refetch: refetchById, isLoading: refetchLoading } = useGetBidByIdQuery(currentBid?.id);
   const { data: productDetails, isSuccess: productDetailsSucces } = useGetProudctByIdQuery(bidById?.product);
+
   useEffect(() => {
     if (!response.isLoading && response.isSuccess) {
       dispatch(updateCurrentBid(response.data));
@@ -111,21 +111,24 @@ function Bid() {
   }, [response]);
 
   function updatePrice() {
-    refetchById();
-    if (userInput <= bidById.Bidding_price) {
-      return toast.error('Please enter higher amount');
-    } else if (currentTime >= bidById.Bidding_End) {
-      toast.error('Sorry! Auction Ended');
-    } else {
-      updateBid({
-        id: currentBid.id,
-        Bidding_price: userInput,
-        Buyer: activeUser.id,
-        Bidding_status: 'Solded',
-      });
-      toast.success('Amount Added');
-      setUserInput(0);
-    }
+    refetchById().then(res => {
+      if (res) {
+        if (userInput <= res.data.Bidding_price) {
+          return toast.error('Please enter higher amount');
+        } else if (currentTime >= bidById.Bidding_End) {
+          toast.error('Sorry! Auction Ended');
+        } else {
+          updateBid({
+            id: currentBid.id,
+            Bidding_price: userInput,
+            Buyer: activeUser.id,
+            Bidding_status: 'Solded',
+          });
+          toast.success('Amount Added');
+          setUserInput(0);
+        }
+      }
+    });
   }
 
   function handleEnd() {
@@ -137,6 +140,7 @@ function Bid() {
     dispatch(updateCurrentBid({}));
     refetchById();
     makeOrder({ Adress: 'xyz', product_id: bidById.product, buyer_id: bidById.Buyer, order_date: date.toISOString().slice(0, 10) });
+    productDetails = {};
   }
   const navigate = useNavigate();
   const popover = (
@@ -155,7 +159,6 @@ function Bid() {
     </Popover>
   );
   const todayBids = data?.filter(bid => bid.Bidding_date == todayDate);
-
   return (
     <>
       {currentCountdown ? (
@@ -165,8 +168,8 @@ function Bid() {
           <div className=' col-6 text-center'>
             <h1>Stay Tuned for Bidding</h1>
             <p>Bidding will start soon</p>
-            {todayBids && <h5>Today Auctions</h5>}
-            {todayBids && (
+            {todayBids?.length >= 1 && <h5>Today Auctions</h5>}
+            {todayBids?.length >= 1 && (
               <Table>
                 <thead>
                   <tr>
@@ -175,8 +178,8 @@ function Bid() {
                   </tr>
                 </thead>
                 <tbody>
-                  {todayBids.map(bid => (
-                    <tr>
+                  {todayBids?.map(bid => (
+                    <tr key={bid.id}>
                       <td>{bid.Bidding_Start}</td>
                       <td>{bid.Bidding_Duration} Minutes</td>
                     </tr>

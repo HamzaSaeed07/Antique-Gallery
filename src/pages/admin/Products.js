@@ -27,6 +27,7 @@ const Products = () => {
       refetch();
     }
   }, [isSuccess]);
+  console.log(data?.results);
   return (
     <>
       <DeleteModal show={modalShow} onHide={() => setModalShow(false)} id={delId} deleteProduct={deleteProduct} />
@@ -59,6 +60,12 @@ const Products = () => {
                       <span>AD Date :</span>
                       <span className='dot' style={{ marginLeft: '5px' }}></span>
                       <span>{product.AD_date}</span>
+                      <span className='dot'></span>
+                    </div>
+                    <div className='mt-1 mb-1 spec-1'>
+                      <span>Seller ID :</span>
+                      <span className='dot' style={{ marginLeft: '5px' }}></span>
+                      <span>{product.sellers}</span>
                       <span className='dot'></span>
                     </div>
                     <p className='text-justify text-truncate para mb-0'>

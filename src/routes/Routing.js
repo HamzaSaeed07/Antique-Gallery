@@ -22,6 +22,7 @@ import Buyers from '../pages/admin/Buyers'
 import AdminDashboard from '../pages/admin/AdminDashboard';
 import Page404 from '../components/Page404'
 import AdminProtected from '../routes/AdminProtected'
+import SellerOrders from '../pages/seller/SellerOrders';
 
 const Routing = () => {
   return (
@@ -36,6 +37,7 @@ const Routing = () => {
         <Route path='/seller/add-product' element={<Sidebar><AddProduct /></Sidebar>} />
         <Route path='/seller/products' element={<Sidebar><SellerProducts /></Sidebar>} />
         <Route path='/seller/category' element={<Sidebar><Category/></Sidebar>} />
+        <Route path='/seller/orders' element={<Sidebar><SellerOrders/></Sidebar>} />
         </Route>
         
         <Route element={<AdminProtected/>}>
