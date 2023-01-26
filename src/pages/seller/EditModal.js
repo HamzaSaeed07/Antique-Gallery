@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
-import { useEditProductMutation, useGetCategoriesQuery } from '../../api';
+import { useEditProductMutation, useGetCategoriesQuery, useGetProudctByIdQuery } from '../../api';
 
 function EditModal(props) {
-  const { product } = props;
   const { data } = useGetCategoriesQuery();
-  const [editProduct, response] = useEditProductMutation();
+  const [editProduct] = useEditProductMutation();
+  const { data: product, isSuccess, isLoading } = useGetProudctByIdQuery(props.id);
+  console.log(product);
   const [img, setImg] = useState();
   const imageInputRef = useRef();
   const [state, setState] = useState({
@@ -17,8 +18,10 @@ function EditModal(props) {
     Category: '',
   });
   useEffect(() => {
-    setState({ ...state, id: product.id, name: product.name, price: product.price, AD_date: product.AD_date, Description: product.Description, Category: product.Category });
-  }, []);
+    if (isSuccess && !isLoading) {
+      setState({ ...state, id: product.id, name: product.name, price: product.price, AD_date: product.AD_date, Description: product.Description, Category: product.Category });
+    }
+  }, [isSuccess, isLoading, product]);
 
   const handleChange = e => {
     setState({ ...state, [e.target.name]: e.target.value });

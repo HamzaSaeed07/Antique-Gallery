@@ -10,6 +10,7 @@ import Header from './Header';
 const SellerProducts = () => {
   const [modalShow, setModalShow] = useState(false);
   const [openEditModal, setopenEditModal] = useState(false);
+  const [id, setId] = useState();
   const { activeUser } = useSelector(state => state.authReducer);
   const [getProducts, response] = useGetSellerProductsMutation();
   const [deleteProduct, { isSuccess }] = useDeleteProductMutation();
@@ -33,6 +34,7 @@ const SellerProducts = () => {
   return (
     <>
       <Header />
+      <EditModal getProducts={getProducts} sellerId={activeUser.id} show={openEditModal} id={id} onHide={() => setopenEditModal(false)} />
       <div className='container mb-5'>
         <div className='d-flex justify-content-left row'>
           {response.isLoading && (
@@ -74,9 +76,15 @@ const SellerProducts = () => {
                       <h4 className='mr-1'>${product.price}</h4>
                     </div>
                     <h6 className='text-success'>{product.status}</h6>
-                    <EditModal getProducts={getProducts} sellerId={activeUser.id} show={openEditModal} product={product} onHide={() => setopenEditModal(false)} />
                     <div className='d-flex flex-column mt-4'>
-                      <button onClick={() => setopenEditModal(true)} className='btn btn-primary btn-sm' type='button'>
+                      <button
+                        onClick={() => {
+                          setId(product.id);
+                          setopenEditModal(true);
+                        }}
+                        className='btn btn-primary btn-sm'
+                        type='button'
+                      >
                         Edit
                       </button>
                       <DeleteModal show={modalShow} onHide={() => setModalShow(false)} id={product.id} deleteProduct={deleteProduct} />
